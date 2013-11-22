@@ -1,0 +1,58 @@
+<%- include inc/header%>
+
+<% if (success) { %>
+<div><%= success %></div>
+<% } %>
+<% if (error) { %>
+<div><%= error %> </div>
+<% } %>
+
+<form class="form-horizontal" method="post">
+    <fieldset>
+        <div id="legend" class="">
+            <legend class="">注册</legend>
+        </div>
+        <div class="control-group">
+
+            <!-- Text input-->
+            <label class="control-label" for="input01">账户</label>
+            <div class="controls">
+                <input type="text" placeholder="" class="input-xlarge" name="account">
+                <p class="help-block"></p>
+            </div>
+        </div>
+
+        <div class="control-group">
+
+            <!-- Text input-->
+            <label class="control-label" for="input01">密码</label>
+            <div class="controls">
+                <input type="password" placeholder="" class="input-xlarge" name="password">
+                <p class="help-block"></p>
+            </div>
+        </div>
+
+        <div class="control-group">
+
+            <!-- Text input-->
+            <label class="control-label" for="input01">密码确认</label>
+            <div class="controls">
+                <input type="password" placeholder="" class="input-xlarge" name="password-repeat">
+                <p class="help-block"></p>
+            </div>
+        </div>
+
+        <div class="control-group">
+            <label class="control-label"></label>
+
+            <!-- Button -->
+            <div class="controls">
+                <button class="btn btn-success" type="submit">提交</button>
+            </div>
+        </div>
+
+    </fieldset>
+</form>
+
+
+<%- include inc/footer%>
