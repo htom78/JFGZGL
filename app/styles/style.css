@@ -1,0 +1,32 @@
+.unit{
+    position: relative;
+    width: 80px;
+    height: 80px;
+    overflow: hidden;
+}
+.alter{
+    margin-top: -80px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 80px;
+    height: 80px;
+    opacity: 0;
+    -webkit-transform:none;
+    -webkit-animation-timing-function:ease-out;
+    -webkit-transition-duration:250ms;
+}
+
+.holder{
+
+}
+
+.unit:hover .alter{
+    opacity: 1;
+    margin-top: 0px;
+}
+
+.view{
+    margin-top: 80px;
+
+}
