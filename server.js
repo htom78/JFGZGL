@@ -18,7 +18,7 @@ fs.readdirSync(modelsPath).forEach(function (file) {
 
 // Populate empty DB with dummy data
 require('./lib/db/dummydata');
-require('./lib/db/dummydataUser');
+//require('./lib/db/dummydataUser');//初始进站用户只需首次
 require('./lib/db/dummydataPc');
 
 // Express Configuration
@@ -55,6 +55,7 @@ var api = require('./lib/controllers/api'),
 // Server Routes
 app.get('/api/awesomeThings', api.awesomeThings);
 app.get('/api/pcStatuses', api.pcStatuses);
+app.post('/api/enterSite',api.enterSite);
 
 // Angular Routes
 app.get('/partials/*', controllers.partials);
