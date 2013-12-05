@@ -1,0 +1,28 @@
+
+<div ng-init="checked=true">
+    <label>
+        <input type="checkbox" ng-model="checked" style="float:left; margin-right:10px;">
+    </label>
+    <div class="check-element animate-show-hide view" ng-show="checked" style="clear:both;">
+        <h1>一机房</h1>
+        <div class="unit" ng-repeat="pcStatus in pcStatuses">
+            <img class="holder" ng-src="/images/{{pcStatus.status}}.png">
+            <div class="alter">
+                <a ng-href="/usePc">上机</a>
+                <a ng-href="/fix">维修</a>
+            </div>
+        </div>
+    </div>
+    <div class="check-element animate-show-hide view" ng-hide="checked" style="clear:both;">
+        <h1>三机房</h1>
+        <div class="unit" ng-repeat="pcStatus in pcStatuses">
+            <img class="holder" ng-src="/images/{{pcStatus.status}}.png">
+            <div class="alter">
+                <a ng-href="/usePc">上机</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
