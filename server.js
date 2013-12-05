@@ -3,7 +3,13 @@
 // Module dependencies.
 var express = require('express'),
     path = require('path'),
-    fs = require('fs');
+    fs = require('fs'),
+    SessionStore = require("session-mongoose")(express);
+
+var store = new SessionStore({
+    url: "mongodb://localhost/usersession",
+    interval: 120000 // expiration check worker run interval in millisec (default: 60000)
+});
 
 var app = express();
 
@@ -16,10 +22,10 @@ fs.readdirSync(modelsPath).forEach(function (file) {
   require(modelsPath + '/' + file);
 });
 
-// Populate empty DB with dummy data
-require('./lib/db/dummydata');
-//require('./lib/db/dummydataUser');//初始进站用户只需首次
-require('./lib/db/dummydataPc');
+// Populate empty DB with dummy data 初始进站用户只需首次
+
+//require('./lib/db/dummydataUser');
+//require('./lib/db/dummydataPc');
 
 // Express Configuration
 
@@ -29,6 +35,13 @@ require('./lib/db/dummydataPc');
   app.use(express.json());
   app.use(express.urlencoded());
   app.use(express.methodOverride());
+  app.use(express.cookieParser());
+  app.use(express.cookieSession({secret :'bulatie'}));
+  app.use(express.session({
+      secret : 'bulatie',
+      store: store,
+      cookie: { maxAge: 900000 } // expire session in 15 min or 900 seconds
+  }));
 
 if('development' === app.get('env')){
     app.use(require('connect-livereload')());
@@ -53,9 +66,9 @@ var api = require('./lib/controllers/api'),
     controllers = require('./lib/controllers');
 
 // Server Routes
-app.get('/api/awesomeThings', api.awesomeThings);
 app.get('/api/pcStatuses', api.pcStatuses);
 app.post('/api/enterSite',api.enterSite);
+app.get('/api/logout', api.logout);
 
 // Angular Routes
 app.get('/partials/*', controllers.partials);

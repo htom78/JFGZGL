@@ -16,14 +16,10 @@ angular.module('angularFullstackApp', [
           templateUrl: 'partials/main',
           controller: 'MainCtrl'
       })
-      .when('/room',{
-        templateUrl: 'partials/room',
-        controller: 'RoomCtrl'
+      .when('/usePc',{
+        templateUrl: 'partials/usePc',
+        controller: 'UsePcCtrl'
       })
-       .when('/usePc',{
-          templateUrl: 'partials/usePc',
-          controller: 'UsePcCtrl'
-       })
       .otherwise({
         redirectTo: '/'
       });

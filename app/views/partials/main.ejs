@@ -1,19 +1,27 @@
-<div class="header">
-  <ul class="nav nav-pills pull-right">
-    <li class="active"><a ng-href="#">上机情况</a></li>
-    <li><a ng-href="#">签到-签离</a></li>
-    <li><a ng-href="#">日志记录</a></li>
-    <li><a ng-href="#">管理员子系统</a></li>
-  </ul>
-  <h3 class="text-muted">机房工作管理系统</h3>
-</div>
 
-
-<div class="row marketing">
-  <div ng-repeat="t in awesomeThings">
-      <h4>{{t.name}}</h4>
-      <p>{{t.info}}</p>
-  </div>
+<div ng-init="checked=true">
+    <label>
+        <input type="checkbox" ng-model="checked" style="float:left; margin-right:10px;">
+    </label>
+    <div class="check-element animate-show-hide view" ng-show="checked" style="clear:both;">
+        <h1>一机房</h1>
+        <div class="unit" ng-repeat="pcStatus in pcStatuses">
+            <img class="holder" ng-src="/images/{{pcStatus.status}}.png">
+            <div class="alter">
+                <a ng-href="/usePc">上机</a>
+                <a ng-href="/fix">维修</a>
+            </div>
+        </div>
+    </div>
+    <div class="check-element animate-show-hide view" ng-hide="checked" style="clear:both;">
+        <h1>三机房</h1>
+        <div class="unit" ng-repeat="pcStatus in pcStatuses">
+            <img class="holder" ng-src="/images/{{pcStatus.status}}.png">
+            <div class="alter">
+                <a ng-href="/usePc">上机</a>
+            </div>
+        </div>
+    </div>
 </div>
 
 

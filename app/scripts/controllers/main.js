@@ -1,10 +1,17 @@
 'use strict';
 
 angular.module('angularFullstackApp')
-    .controller('LayoutController',function($scope,$http){
-
+    .controller('LayoutController',function($scope,$http,$location){
+        $scope.loginOut = function () {
+            $http.get('/api/logout').success(function(session) {
+//                $scope.session = session;
+            });
+            $location.path("/");
+        };
     })
-    .controller('EnterSiteCtrl', function ($scope,$http,$location) {
+    .controller('EnterSiteCtrl', function ($scope,$rootScope,$http,$location) {
+        $rootScope.title = 'Login';
+
         $scope.user = {
             name:'',
             password:''
@@ -19,12 +26,9 @@ angular.module('angularFullstackApp')
             });
         };
     })
-    .controller('MainCtrl', function ($scope, $http) {
-        $http.get('/api/awesomeThings').success(function(awesomeThings) {
-            $scope.awesomeThings = awesomeThings;
-        });
-    })
-    .controller('RoomCtrl', function ($scope, $http) {
+    .controller('MainCtrl', function ($scope,$rootScope,$http) {
+        $rootScope.title = 'main';
+
         $http.get('/api/pcStatuses').success(function(pcStatuses) {
             $scope.pcStatuses = pcStatuses;
         });
