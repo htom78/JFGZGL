@@ -18,6 +18,21 @@
         </div>
 
         <div class="control-group">
+            <label class="control-label">身份选择</label>
+            <div class="controls">
+                <!-- Inline Radios -->
+                <label class="radio inline">
+                    <input type="radio" value="部员" name="">
+                    部员
+                </label>
+                <label class="radio inline">
+                    <input type="radio" value="管理员" name="">
+                    管理员
+                </label>
+            </div>
+        </div>
+
+        <div class="control-group">
             <!-- Button -->
             <div class="controls">
                 <button class="btn btn-success" type="submit" ng-disabled="myForm.$invalid" ng-click="enterSite()">登陆</button>

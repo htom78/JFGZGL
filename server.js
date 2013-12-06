@@ -43,6 +43,14 @@ fs.readdirSync(modelsPath).forEach(function (file) {
       cookie: { maxAge: 900000 } // expire session in 15 min or 900 seconds
   }));
 
+    app.use(require('less-middleware')({
+        dest: path.join(__dirname,'/app/styles'),
+        src: path.join( __dirname,'/app/bower_components/bootstrap/less'),
+        debug: true,
+        prefix: '/styles',
+        compress: true
+    }));
+
 if('development' === app.get('env')){
     app.use(require('connect-livereload')());
     app.use(express.static(path.join(__dirname, '.tmp')));
@@ -56,6 +64,8 @@ if('production' === app.get('env')){
     app.use(express.static(path.join(__dirname, 'public')));
     app.set('views', __dirname + '/views');
 };
+
+
 
   // Router needs to be last
 	app.use(app.router);
