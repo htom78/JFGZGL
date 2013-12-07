@@ -46,7 +46,6 @@ fs.readdirSync(modelsPath).forEach(function (file) {
     app.use(require('less-middleware')({
         dest: path.join(__dirname,'/app/styles'),
         src: path.join( __dirname,'/app/bower_components/bootstrap/less'),
-        debug: true,
         prefix: '/styles',
         compress: true
     }));

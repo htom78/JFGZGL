@@ -14,7 +14,8 @@ angular.module('angularFullstackApp')
 
         $scope.user = {
             name:'',
-            password:''
+            password:'',
+            identity:''
         };
 
         $scope.enterSite = function () {
