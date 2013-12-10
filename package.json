@@ -7,7 +7,8 @@
     "async": "~0.2.9",
     "ejs": "~0.8.4",
     "less-middleware": "*",
-    "session-mongoose":"*"
+    "session-mongoose":"*",
+      "connect-flash":"*"
   },
   "devDependencies": {
     "grunt": "~0.4.1",

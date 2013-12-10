@@ -2,12 +2,8 @@
 
 angular.module('angularFullstackApp')
     .controller('LayoutController',function($scope,$http,$location){
-        $scope.loginOut = function () {
-            $http.get('/api/logout').success(function(session) {
-//                $scope.session = session;
-            });
-            $location.path("/");
-        };
+
+
     })
     .controller('EnterSiteCtrl', function ($scope,$rootScope,$http,$location) {
         $rootScope.title = 'Login';
@@ -23,17 +19,22 @@ angular.module('angularFullstackApp')
                 if (data.err) {
                     return $scope.err = data.err;
                 }
+                $rootScope.account = data;
                 $location.path("/main");
             });
         };
     })
-    .controller('MainCtrl', function ($scope,$rootScope,$http) {
+    .controller('MainCtrl', function ($scope,$rootScope,$http,$location) {
         $rootScope.title = 'main';
+
+        $scope.loginOut = function () {
+            $http.get('/api/logout').success(function(data) {
+                $rootScope.account = data;
+            });
+            $location.path("/");
+        };
 
         $http.get('/api/pcStatuses').success(function(pcStatuses) {
             $scope.pcStatuses = pcStatuses;
         });
-    })
-    .controller('UsePc', function ($scope) {
-
     })

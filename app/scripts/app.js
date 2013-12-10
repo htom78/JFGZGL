@@ -9,8 +9,12 @@ angular.module('angularFullstackApp', [
   .config(function ($routeProvider, $locationProvider) {
     $routeProvider
       .when('/', {
-        templateUrl: 'partials/enterSite',
-        controller: 'EnterSiteCtrl'
+        templateUrl: 'partials/index',
+        controller: 'IndexCtrl'
+      })
+      .when('/enterSite', {
+          templateUrl: 'partials/enterSite',
+          controller: 'EnterSiteCtrl'
       })
       .when('/main', {
           templateUrl: 'partials/main',

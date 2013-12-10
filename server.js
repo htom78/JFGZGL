@@ -4,7 +4,9 @@
 var express = require('express'),
     path = require('path'),
     fs = require('fs'),
+    flash = require('connect-flash'),
     SessionStore = require("session-mongoose")(express);
+
 
 var store = new SessionStore({
     url: "mongodb://localhost/usersession",
@@ -33,6 +35,7 @@ fs.readdirSync(modelsPath).forEach(function (file) {
   app.set('view engine', 'ejs');
   app.use(express.logger('dev'));
   app.use(express.json());
+  app.use(flash());
   app.use(express.urlencoded());
   app.use(express.methodOverride());
   app.use(express.cookieParser());
@@ -42,6 +45,7 @@ fs.readdirSync(modelsPath).forEach(function (file) {
       store: store,
       cookie: { maxAge: 900000 } // expire session in 15 min or 900 seconds
   }));
+
 
     app.use(require('less-middleware')({
         dest: path.join(__dirname,'/app/styles'),
@@ -63,8 +67,6 @@ if('production' === app.get('env')){
     app.use(express.static(path.join(__dirname, 'public')));
     app.set('views', __dirname + '/views');
 };
-
-
 
   // Router needs to be last
 	app.use(app.router);
