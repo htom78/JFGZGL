@@ -83,8 +83,7 @@ app.get('/api/logout', api.logout);
 
 // Angular Routes
 
-app.get('/partials/*', controllers.partials);
-app.get('/*', controllers.index);
+controllers(app);
 
 // Start server
 var port = process.env.PORT || 3000;

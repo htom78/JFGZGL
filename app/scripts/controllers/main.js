@@ -2,8 +2,6 @@
 
 angular.module('angularFullstackApp')
     .controller('LayoutController',function($scope,$http,$location){
-
-
     })
     .controller('EnterSiteCtrl', function ($scope,$rootScope,$http,$location) {
         $rootScope.title = 'Login';
@@ -23,14 +21,9 @@ angular.module('angularFullstackApp')
             });
         };
     })
-    .controller('MainCtrl', function ($scope,$rootScope,$http,$location) {
+    .controller('MainCtrl', function ($scope,$rootScope,$http) {
         $rootScope.title = 'main';
-        $scope.loginOut = function () {
-            $http.get('/api/logout').success(function(data) {
-                $rootScope.account = data;
-            });
-            $location.path("/");
-        };
+
 
         $http.get('/api/pcStatuses').success(function(pcStatuses) {
             $scope.pcStatuses = pcStatuses;

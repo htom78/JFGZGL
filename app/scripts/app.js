@@ -24,6 +24,9 @@ angular.module('angularFullstackApp', [
         templateUrl: 'partials/usePc',
         controller: 'UsePcCtrl'
       })
+      .when('/logout',{
+          templateUrl: '/logout'
+      })
       .otherwise({
         redirectTo: '/'
       });
