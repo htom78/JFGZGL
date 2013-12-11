@@ -13,7 +13,6 @@ angular.module('angularFullstackApp')
             password:'',
             identity:''
         };
-
         $scope.enterSite = function () {
             $http.post('/api/enterSite', $scope.user).success(function (data) {
                 if (data.err) {
@@ -26,7 +25,6 @@ angular.module('angularFullstackApp')
     })
     .controller('MainCtrl', function ($scope,$rootScope,$http,$location) {
         $rootScope.title = 'main';
-
         $scope.loginOut = function () {
             $http.get('/api/logout').success(function(data) {
                 $rootScope.account = data;

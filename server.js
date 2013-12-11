@@ -82,6 +82,7 @@ app.post('/api/enterSite',api.enterSite);
 app.get('/api/logout', api.logout);
 
 // Angular Routes
+
 app.get('/partials/*', controllers.partials);
 app.get('/*', controllers.index);
 
