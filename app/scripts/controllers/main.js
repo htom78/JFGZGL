@@ -2,6 +2,7 @@
 
 angular.module('angularFullstackApp')
     .controller('LayoutController',function($scope,$http,$location){
+
     })
     .controller('EnterSiteCtrl', function ($scope,$rootScope,$http,$location) {
         $rootScope.title = 'Login';
@@ -24,8 +25,24 @@ angular.module('angularFullstackApp')
     .controller('MainCtrl', function ($scope,$rootScope,$http) {
         $rootScope.title = 'main';
 
-
         $http.get('/api/pcStatuses').success(function(pcStatuses) {
             $scope.pcStatuses = pcStatuses;
         });
+    })
+    .controller('IndexCtrl', function ($scope,$rootScope,$location,$http) {
+        $rootScope.title = 'index';
+
+        $scope.enter = function () {
+            $http.get('/api/enter').success(function(data) {
+                $rootScope.aaa = data;//数据不是session而是整个网页的请求
+                if (data) {
+                    $location.path("/main");
+                }
+                else {
+                    $location.path("/enterSite");
+                }
+            });
+
+        };
+
     })
