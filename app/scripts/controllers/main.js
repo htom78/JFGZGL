@@ -34,13 +34,16 @@ angular.module('angularFullstackApp')
 
         $scope.enter = function () {
             $http.get('/api/enter').success(function(data) {
-                $rootScope.aaa = data;//数据不是session而是整个网页的请求
+
+//                $scope.phones = data;//just for test
+
                 if (data) {
                     $location.path("/main");
                 }
                 else {
                     $location.path("/enterSite");
                 }
+
             });
 
         };

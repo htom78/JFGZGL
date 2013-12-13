@@ -79,7 +79,7 @@ var api = require('./lib/controllers/api'),
 // Server Routes
 app.get('/api/pcStatuses', api.pcStatuses);
 app.post('/api/enterSite',api.enterSite);
-app.get('/api/logout', api.logout);
+app.get('/api/enter', api.enter);
 
 // Angular Routes
 
