@@ -27,6 +27,9 @@ angular.module('angularFullstackApp', [
       .when('/logout',{
           templateUrl: '/logout'
       })
+      .when('/manager',{
+          templateUrl: '/partials/manager'
+      })
       .otherwise({
         redirectTo: '/'
       });

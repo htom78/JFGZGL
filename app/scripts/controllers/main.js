@@ -3,6 +3,17 @@
 angular.module('angularFullstackApp')
     .controller('LayoutController',function($scope,$http,$location){
 
+        $scope.manager = function() {
+            $http.get('/api/manager').success(function(data) {
+
+                if (data) {
+                    $location.path("/manager");
+                }
+                else {
+                    $location.path("/main");
+                }
+            })
+        }
     })
     .controller('EnterSiteCtrl', function ($scope,$rootScope,$http,$location) {
         $rootScope.title = 'Login';
@@ -43,6 +54,17 @@ angular.module('angularFullstackApp')
                 else {
                     $location.path("/enterSite");
                 }
+
+            $http.get('/api/manager').success(function(data) {
+
+                if (data) {
+                    $rootScope.managerShow = data;
+
+                }
+                else {
+                    $rootScope.managerShow = undefined;
+                }
+            })
 
             });
 
