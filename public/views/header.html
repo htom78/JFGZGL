@@ -1,0 +1,55 @@
+<div class="navbar-inner" data-ng-controller="HeaderController">
+    <ul class="nav">
+        <li>
+            <a class="brand" href="/">机房工作管理系统</a>
+        </li>
+        <li class="dropdown" data-ng-show="global.user">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                上机
+            </a>
+            <ul class="dropdown-menu">
+                <li data-ng-repeat="item in shangji"  ui-route="/{{item.link}}" ng-class="{active: $uiRoute}">
+                    <a href="#!/{{item.link}}">{{item.title}}</a>
+                </li>
+            </ul>
+        </li>
+        <li class="dropdown" data-ng-show="global.user">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                签到/签离
+            </a>
+            <ul class="dropdown-menu">
+                <li data-ng-repeat="item in qian"  ui-route="/{{item.link}}" ng-class="{active: $uiRoute}">
+                    <a href="#!/{{item.link}}">{{item.title}}</a>
+                </li>
+            </ul>
+        </li>
+        <li class="dropdown" data-ng-show="global.user">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                 日志记录
+            </a>
+            <ul class="dropdown-menu">
+                <li data-ng-repeat="item in articles"  ui-route="/{{item.link}}" ng-class="{active: $uiRoute}">
+                    <a href="#!/{{item.link}}">{{item.title}}</a>
+                </li>
+            </ul>
+        </li>
+    </ul>
+    <ul class="nav pull-right" data-ng-hide="global.authenticated">
+        <li><a href="signup">Signup</a>
+        </li>
+        <li class="divider-vertical"></li>
+        <li><a href="signin">Signin</a>
+        </li>
+    </ul>
+    <ul class="nav pull-right" data-ng-show="global.authenticated">
+        <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+				{{global.user.name}} <b class="caret"></b>
+			</a>
+            <ul class="dropdown-menu">
+                <li><a href="/signout">Signout</a>
+                </li>
+            </ul>
+        </li>
+    </ul>
+</div>
