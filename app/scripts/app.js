@@ -20,10 +20,6 @@ angular.module('angularFullstackApp', [
           templateUrl: 'partials/main',
           controller: 'MainCtrl'
       })
-      .when('/usePc',{
-        templateUrl: 'partials/usePc',
-        controller: 'UsePcCtrl'
-      })
       .when('/logout',{
           templateUrl: '/logout'
       })

@@ -1,0 +1,12 @@
+<header class="header">
+    <ul class="nav nav-pills pull-right" ng-switch on="managerShow">
+        <li><a ng-href="#">上机情况</a></li>
+        <li><a ng-href="#">签到-签离</a></li>
+        <li><a ng-href="#">日志记录</a></li>
+        <li><a href="/logout" target="_self">登出系统</a></li>
+    </ul>
+    <h3 class="text-muted">机房工作管理系统</h3>
+</header>
+
+<div ng-include="template.url"></div>
+

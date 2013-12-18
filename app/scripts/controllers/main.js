@@ -3,38 +3,39 @@
 angular.module('angularFullstackApp')
     .controller('LayoutController',function($scope,$http,$location){
 
-        $scope.manager = function() {
-            $http.get('/api/manager').success(function(data) {
 
-                if (data) {
-                    $location.path("/manager");
-                }
-                else {
-                    $location.path("/main");
-                }
-            })
-        }
     })
     .controller('EnterSiteCtrl', function ($scope,$rootScope,$http,$location) {
         $rootScope.title = 'Login';
 
         $scope.user = {
             name:'',
-            password:'',
-            identity:''
+            password:''
         };
         $scope.enterSite = function () {
             $http.post('/api/enterSite', $scope.user).success(function (data) {
                 if (data.err) {
                     return $scope.err = data.err;
+                } else if (data.identity == 'managementer') {
+                    $location.path("/manager");
+                } else {
+                    $location.path("/main");
                 }
-                $rootScope.account = data;
-                $location.path("/main");
             });
         };
     })
     .controller('MainCtrl', function ($scope,$rootScope,$http) {
         $rootScope.title = 'main';
+
+//        $scope.templates =
+//            [ { name: 'PcState.html', url: './partials/funcModel/PcState.html'}
+//                , { name: 'manager.html', url: './partials/funcModel/manager.html'}
+//                , { name: 'fix.html', url: './partials/funcModel/fix.html'}
+//                , { name: 'userPc.html', url: './partials/funcModel/userPc.html'}];
+//        $scope.template = $scope.templates[0];
+
+//        for(;time<=1;time++) {location.reload();}
+
 
         $http.get('/api/pcStatuses').success(function(pcStatuses) {
             $scope.pcStatuses = pcStatuses;
@@ -48,24 +49,13 @@ angular.module('angularFullstackApp')
 
 //                $scope.phones = data;//just for test
 
-                if (data) {
+                if (data === 'managementer') {
+                    $location.path("/manager");
+                } else if (data === 'normal') {
                     $location.path("/main");
-                }
-                else {
+                } else {
                     $location.path("/enterSite");
                 }
-
-            $http.get('/api/manager').success(function(data) {
-
-                if (data) {
-                    $rootScope.managerShow = data;
-
-                }
-                else {
-                    $rootScope.managerShow = undefined;
-                }
-            })
-
             });
 
         };

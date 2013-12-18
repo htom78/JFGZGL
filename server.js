@@ -32,7 +32,7 @@ fs.readdirSync(modelsPath).forEach(function (file) {
 // Express Configuration
 
   app.engine('html', require('ejs').renderFile);
-  app.set('view engine', 'ejs');
+  app.set('view engine', 'html');
   app.use(express.logger('dev'));
   app.use(express.json());
   app.use(flash());
@@ -80,7 +80,6 @@ var api = require('./lib/controllers/api'),
 app.get('/api/pcStatuses', api.pcStatuses);
 app.post('/api/enterSite',api.enterSite);
 app.get('/api/enter', api.enter);
-app.get('/api/manager', api.manager);
 
 
 // Angular Routes
