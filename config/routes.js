@@ -29,9 +29,9 @@ module.exports = function(app, passport, auth) {
     //Finish with setting up the articleId param
     app.param('articleId', articles.article);
 
-    //Shangji Routes
-    var shangji = require('../app/controllers/shangji');
-    app.get('/shangji',shangji.pcStatuses);
+    //machines Routes
+    var machines = require('../app/controllers/machines');
+    app.get('/machines',machines.pcStatuses);
 
     //Home route
     var index = require('../app/controllers/index');

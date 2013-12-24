@@ -31,7 +31,7 @@ module.exports = function(config) {
             'public/js/controllers/articles.js',
             'public/js/controllers/index.js',
             'public/js/controllers/header.js',
-	        'public/js/controllers/shangji.js',
+	        'public/js/controllers/machines.js',
             'public/js/init.js',
             'test/karma/unit/**/*.js'
         ],

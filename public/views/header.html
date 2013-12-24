@@ -8,7 +8,7 @@
                 上机
             </a>
             <ul class="dropdown-menu">
-                <li data-ng-repeat="item in shangji"  ui-route="/{{item.link}}" ng-class="{active: $uiRoute}">
+                <li data-ng-repeat="item in machines"  ui-route="/{{item.link}}" ng-class="{active: $uiRoute}">
                     <a href="#!/{{item.link}}">{{item.title}}</a>
                 </li>
             </ul>
@@ -18,7 +18,7 @@
                 签到/签离
             </a>
             <ul class="dropdown-menu">
-                <li data-ng-repeat="item in qian"  ui-route="/{{item.link}}" ng-class="{active: $uiRoute}">
+                <li data-ng-repeat="item in sign"  ui-route="/{{item.link}}" ng-class="{active: $uiRoute}">
                     <a href="#!/{{item.link}}">{{item.title}}</a>
                 </li>
             </ul>

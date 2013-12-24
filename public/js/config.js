@@ -2,26 +2,26 @@
 angular.module('mean').config(['$routeProvider',
     function($routeProvider) {
         $routeProvider.
-        when('/shangji', {
-            templateUrl: 'views/shangji/list.html'
+        when('/machines', {
+            templateUrl: 'views/machines/list.html'
         }).
-        when('/shangji/shagnjidj', {
-            templateUrl: 'views/shangji/shangjidj.html'
+        when('/machines/machinesR', {
+            templateUrl: 'views/machines/machinesR.html'
         }).
-        when('/shangji/weixiudj', {
-            templateUrl: 'views/shangji/weixiudj.html'
+        when('/machines/fixR', {
+            templateUrl: 'views/machines/fixR.html'
         }).
-        when('/shangji/weixiudjhou', {
-            templateUrl: 'views/shangji/weixiudjhou.html'
+        when('/machines/afterFixR', {
+            templateUrl: 'views/machines/afterFixR.html'
         }).
-        when('/shangji/shagnjiqk', {
-            templateUrl: 'views/shangji/shangjiqk.html'
+        when('/machines/machinesS', {
+            templateUrl: 'views/machines/machinesS.html'
         }).
-        when('/qiandao', {
-            templateUrl: 'views/qian/qiandao.html'
+        when('/signIn', {
+            templateUrl: 'views/sign/signIn.html'
         }).
-        when('/qianli', {
-            templateUrl: 'views/qian/qianli.html'
+        when('/signOut', {
+            templateUrl: 'views/sign/signOut.html'
         }).
         when('/articles', {
             templateUrl: 'views/articles/list.html'

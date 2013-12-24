@@ -1,10 +1,10 @@
 (function() {
     'use strict'
 
-    // Shangji Controller Spec
+    // Machines Controller Spec
     describe('MEAN controllers',function(){
 
-        describe('Shangji Controller',function(){
+        describe('Machines Controller',function(){
             // The $resource service augments the response object with methods for updating and deleting the resource.
             // If we were to use the standard toEqual matcher, our tests would fail because the test values would not match
             // the responses exactly. To solve the problem, we use a newly-defined toEqualData Jasmine matcher.
@@ -22,7 +22,7 @@
             beforeEach(module('mean'));
 
             // Initialize the controller and a mock scope
-            var ShangjiController,
+            var MachinesController,
                 scope,
                 $httpBackend,
                 $routeParams,
@@ -35,7 +35,7 @@
 
                 scope = $rootScope.$new();
 
-                ShangjiController = $controller('ShangjiController', {
+                MachinesController = $controller('MachinesController', {
                     $scope: scope
                 });
 
@@ -97,4 +97,4 @@
         })
     })
 
-})
+} ());

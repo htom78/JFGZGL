@@ -1,20 +1,20 @@
 angular.module('mean.system').controller('HeaderController', ['$scope', 'Global', function ($scope, Global) {
     $scope.global = Global;
 
-    $scope.shangji = [{
+    $scope.machines = [{
         "title": "上机登记",
-        "link": "shangji"
+        "link": "machines"
     }, {
-        "title": "上机记录",
-        "link": "shagnji/shagnjiqk"
+        "title": "上机情况",
+        "link": "machines/machinesS"
     }];
 
-    $scope.qian = [{
+    $scope.sign = [{
         "title": "签到",
-        "link": "qiandao"
+        "link": "signIn"
     }, {
         "title": "签离",
-        "link": "qianli"
+        "link": "signOut"
     }];
 
     $scope.articles = [{
