@@ -1,10 +1,9 @@
-<section data-ng-controller="MachinesController">
-    <form class="form-horizontal container" method="post">
+<section>
+    <form class="form-horizontal" method="post">
         <fieldset>
             <div>
                 <legend>上机登记</legend>
             </div>
-
             <div class="control-group">
                 <label class="control-label">选择登记方式</label>
                 <div class="controls">
@@ -47,11 +46,10 @@
                 </div>
             </div>
 
-            <div class="control-group">
+            <div class="modal-footer control-group">
                 <!-- Button -->
-                <div class="controls">
-                    <button class="btn btn-success">提交</button>
-                </div>
+                <button type="submit" class="btn btn-primary" ng-click="ok()">提交</button>
+                <button class="btn btn-warning" ng-click="cancel()">取消</button>
             </div>
 
         </fieldset>
