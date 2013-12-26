@@ -13,12 +13,18 @@ angular.module('mean.machines').controller('MachinesController', ['$scope', '$ro
         others: ''
     };
 
+/*
+* machines data init
+* */
     $scope.find = function() {
         Machines.query(function(pcStatuses) {
             $scope.machines = pcStatuses;
         });
     };
 
+/*
+* button Rigister
+* */
     $scope.R = function () {
         var modalInstance = $modal.open({
             templateUrl: 'views/machines/machinesR.html',
@@ -26,8 +32,8 @@ angular.module('mean.machines').controller('MachinesController', ['$scope', '$ro
                 $scope.selectF = selectF;
                 $scope.useLog = useLog;
 
-                $scope.submit = function () {
-                    $http.post('/api/login', $scope.useLog).success();
+                $scope.ok = function () {
+                    $http.post('/machines/:machineId', $scope.useLog).success();
                     $modalInstance.close($scope.selectF = false);
                 };
 
@@ -47,12 +53,13 @@ angular.module('mean.machines').controller('MachinesController', ['$scope', '$ro
         });
     };
 
+/*
+* button fix
+* */
     $scope.fix = function () {
-
         var modalInstance = $modal.open({
             templateUrl: 'views/machines/fixR.html',
             controller: function ($scope, $modalInstance) {
-
                 $scope.ok = function () {
                     $modalInstance.close();
                 };
@@ -68,4 +75,5 @@ angular.module('mean.machines').controller('MachinesController', ['$scope', '$ro
             $scope.selected = selectedItem;
         });
     };
+
 }]);

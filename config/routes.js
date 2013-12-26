@@ -33,7 +33,7 @@ module.exports = function(app, passport, auth) {
     var machines = require('../app/controllers/machines');
     app.get('/machines',machines.all);
     app.post('/machines/:machineId',machines.useOn);
-    app.put('/machines/:machineId',machines.useOff);
+    app.post('/machines/:machineId',machines.useOff);
     app.post('/machines/:machineId',machines.fixOn);
     app.put('/machines/:machineId',machines.fixOff);
 
