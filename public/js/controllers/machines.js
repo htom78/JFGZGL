@@ -12,7 +12,7 @@ angular.module('mean.machines').controller('MachinesController', ['$scope', '$ro
         });
     };
 
-    $scope.open = function () {
+    $scope.R = function () {
         var modalInstance = $modal.open({
             templateUrl: 'views/machines/machinesR.html',
             controller: ModalInstanceCtrl,
