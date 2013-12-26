@@ -3,15 +3,7 @@ angular.module('mean.machines').controller('MachinesController', ['$scope', '$ro
     $scope.machines = {};
     $scope.selectR = true;
     $scope.selectF = true;
-    $scope.useLog = {
-        name: '',
-        sno: null,
-        tel: null,
-        machineId: null,
-        useOn: null,
-        useOff: null,
-        others: ''
-    };
+    $scope.useLog = {};
 
 /*
 * machines data init
@@ -29,8 +21,16 @@ angular.module('mean.machines').controller('MachinesController', ['$scope', '$ro
         var modalInstance = $modal.open({
             templateUrl: 'views/machines/machinesR.html',
             controller: function ($scope, $http, $modalInstance, selectF, useLog) {
+                $scope.useLog = {
+                    name: '',
+                    sno: null,
+                    tel: null,
+                    machineId: null,
+                    useOn: null,
+                    useOff: null,
+                    others: ''
+                };
                 $scope.selectF = selectF;
-                $scope.useLog = useLog;
 
                 $scope.ok = function () {
                     $http.post('/machines/:machineId', $scope.useLog).success();

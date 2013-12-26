@@ -8,7 +8,7 @@
             <!-- Text input-->
             <label class="control-label">姓名</label>
             <div class="controls">
-                <input type="text" required>
+                <input type="text" ng-model="useLog.name" required>
             </div>
         </div>
 
@@ -17,7 +17,7 @@
             <!-- Text input-->
             <label class="control-label">学号</label>
             <div class="controls">
-                <input type="number" required>
+                <input type="number" ng-model="useLog.sno" required>
             </div>
         </div>
 
@@ -26,13 +26,13 @@
             <!-- Text input-->
             <label class="control-label">手机号码</label>
             <div class="controls">
-                <input type="number" required>
+                <input type="number" ng-model="useLog.tel" required>
             </div>
         </div>
 
         <div class="modal-footer">
             <!-- Button -->
-            <button type="submit" class="btn btn-primary" ng-click="ok()">提交</button>
+            <button type="submit" class="btn btn-primary" ng-click="ok()" >提交</button>
             <button class="btn btn-warning" ng-click="cancel()">取消</button>
         </div>
     </form>
