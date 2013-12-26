@@ -1,31 +1,40 @@
 angular.module('mean.machines').controller('MachinesController', ['$scope', '$routeParams', '$location', '$modal', 'Global', 'Machines', function ($scope, $routeParams, $location, $modal, Global, Machines) {
     $scope.global = Global;
-
-
-//    $http.get('/pcStatus').success(function(pcStatuses) {
-//        $scope.pcStatuses = pcStatuses;
-//    });
-
-    $scope.find = function() {
-        Machines.query(function(pcStatuses) {
-            $scope.pcStatuses = pcStatuses;
-        });
-    };
-
+    $scope.machines = {};
     $scope.selectR = true;
     $scope.selectF = true;
     $scope.useLog = {
         name: '',
+        sno: null,
+        tel: null,
         machineId: null,
         useOn: null,
         useOff: null,
         others: ''
     };
 
+    $scope.find = function() {
+        Machines.query(function(pcStatuses) {
+            $scope.machines = pcStatuses;
+        });
+    };
+
     $scope.R = function () {
         var modalInstance = $modal.open({
             templateUrl: 'views/machines/machinesR.html',
-            controller: ModalInstanceRCtrl,
+            controller: function ($scope, $http, $modalInstance, selectF, useLog) {
+                $scope.selectF = selectF;
+                $scope.useLog = useLog;
+
+                $scope.submit = function () {
+                    $http.post('/api/login', $scope.useLog).success();
+                    $modalInstance.close($scope.selectF = false);
+                };
+
+                $scope.cancel = function () {
+                    $modalInstance.dismiss('cancel');
+                };
+            },
             resolve: {
                 selectF:$scope.selectF,
                 useLog:function () {
@@ -38,40 +47,25 @@ angular.module('mean.machines').controller('MachinesController', ['$scope', '$ro
         });
     };
 
-    var ModalInstanceRCtrl = function ($scope, $http, $modalInstance, selectF, useLog) {
-        $scope.selectF = selectF;
-        $scope.useLog = useLog;
-
-        $scope.submit = function () {
-            $http.post('/api/login', $scope.useLog).success();
-            $modalInstance.close($scope.selectF = false);
-        };
-
-        $scope.cancel = function () {
-            $modalInstance.dismiss('cancel');
-        };
-    };
-
     $scope.fix = function () {
 
         var modalInstance = $modal.open({
             templateUrl: 'views/machines/fixR.html',
-            controller: ModalInstanceFCtrl,
+            controller: function ($scope, $modalInstance) {
+
+                $scope.ok = function () {
+                    $modalInstance.close();
+                };
+
+                $scope.cancel = function () {
+                    $modalInstance.dismiss('cancel');
+                };
+            },
             resolve: {
             }
         });
         modalInstance.result.then(function (selectedItem) {
             $scope.selected = selectedItem;
         });
-    };
-    var ModalInstanceFCtrl = function ($scope, $modalInstance) {
-
-        $scope.ok = function () {
-            $modalInstance.close();
-        };
-
-        $scope.cancel = function () {
-            $modalInstance.dismiss('cancel');
-        };
     };
 }]);
