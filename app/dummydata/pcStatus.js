@@ -9,19 +9,19 @@ var mongoose = require('mongoose'),
 //Clear old things, then add things in
 PcStatus.find({}).remove(function() {
     PcStatus.create({
-            id : 1,
+            machineId : 1,
             status: 'free'
         }, {
-            id : 2,
+            machineId : 2,
             status: 'free'
         }, {
-            id : 3,
+            machineId : 3,
             status: 'free'
         }, {
-            id : 4,
+            machineId : 4,
             status: 'free'
         }, {
-            id : 5,
+            machineId : 5,
             status: 'free'
         }, function(err) {
             console.log('finished populating PcStatus');

@@ -14,13 +14,23 @@ angular.module('mean.machines').controller('MachinesController', ['$scope', '$ro
 
     $scope.selectR = true;
     $scope.selectF = true;
+    $scope.useLog = {
+        name: '',
+        machineId: null,
+        useOn: null,
+        useOff: null,
+        others: ''
+    };
 
     $scope.R = function () {
         var modalInstance = $modal.open({
             templateUrl: 'views/machines/machinesR.html',
             controller: ModalInstanceRCtrl,
             resolve: {
-                selectF:$scope.selectF
+                selectF:$scope.selectF,
+                useLog:function () {
+                    return $scope.useLog;
+                }
             }
         });
         modalInstance.result.then(function (selected) {
@@ -28,10 +38,12 @@ angular.module('mean.machines').controller('MachinesController', ['$scope', '$ro
         });
     };
 
-    var ModalInstanceRCtrl = function ($scope, $modalInstance,selectF) {
+    var ModalInstanceRCtrl = function ($scope, $http, $modalInstance, selectF, useLog) {
         $scope.selectF = selectF;
+        $scope.useLog = useLog;
 
-        $scope.ok = function () {
+        $scope.submit = function () {
+            $http.post('/api/login', $scope.useLog).success();
             $modalInstance.close($scope.selectF = false);
         };
 

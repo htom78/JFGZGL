@@ -6,7 +6,7 @@ var mongoose = require('mongoose'),
 
 // Schema
 var PcStatusSchema = new Schema({
-    id: Number,
+    machineId: Number,
     status: String
 });
 
