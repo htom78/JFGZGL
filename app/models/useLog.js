@@ -18,7 +18,7 @@ var useLogSchema = new Schema({
         type:Number,
         default:''
     },
-    MachineId: {
+    machineId: {
         type:Number,
         default:null
     },
@@ -28,7 +28,7 @@ var useLogSchema = new Schema({
     },
     useOff: {
         type: Date,
-        default: 0
+        default: null
     },
     note: {
         type: String,

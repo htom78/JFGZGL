@@ -15,25 +15,24 @@ angular.module('mean.machines').controller('MachinesController', ['$scope', '$ro
     };
 
 /*
-* button Rigister
+* button R
 * */
     $scope.R = function () {
         var modalInstance = $modal.open({
             templateUrl: 'views/machines/machinesR.html',
-            controller: function ($scope, $http, $modalInstance, selectF, useLog) {
-                $scope.useLog = {
+            controller: function ($scope, Machines, $modalInstance, selectF, useLog) {
+                $scope.selectF = selectF;
+                $scope.useLog = new Machines({
                     name: '',
                     sno: null,
                     tel: null,
                     machineId: null,
-                    useOn: null,
-                    useOff: null,
                     others: ''
-                };
-                $scope.selectF = selectF;
+                });
 
                 $scope.ok = function () {
-                    $http.post('/machines/:machineId', $scope.useLog).success();
+                    $scope.useLog.$save(function(response) {
+                    });
                     $modalInstance.close($scope.selectF = false);
                 };
 
