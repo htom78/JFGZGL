@@ -12,10 +12,39 @@ angular.module('mean.machines').controller('MachinesController', ['$scope', '$ro
         });
     };
 
+    $scope.selectR = true;
+    $scope.selectF = true;
+
     $scope.R = function () {
         var modalInstance = $modal.open({
             templateUrl: 'views/machines/machinesR.html',
-            controller: ModalInstanceCtrl,
+            controller: ModalInstanceRCtrl,
+            resolve: {
+                selectF:$scope.selectF
+            }
+        });
+        modalInstance.result.then(function (selected) {
+            $scope.selectF = selected;
+        });
+    };
+
+    var ModalInstanceRCtrl = function ($scope, $modalInstance,selectF) {
+        $scope.selectF = selectF;
+
+        $scope.ok = function () {
+            $modalInstance.close($scope.selectF = false);
+        };
+
+        $scope.cancel = function () {
+            $modalInstance.dismiss('cancel');
+        };
+    };
+
+    $scope.fix = function () {
+
+        var modalInstance = $modal.open({
+            templateUrl: 'views/machines/fixR.html',
+            controller: ModalInstanceFCtrl,
             resolve: {
             }
         });
@@ -23,8 +52,7 @@ angular.module('mean.machines').controller('MachinesController', ['$scope', '$ro
             $scope.selected = selectedItem;
         });
     };
-
-    var ModalInstanceCtrl = function ($scope, $modalInstance) {
+    var ModalInstanceFCtrl = function ($scope, $modalInstance) {
 
         $scope.ok = function () {
             $modalInstance.close();
