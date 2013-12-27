@@ -5,6 +5,7 @@ angular.module('mean.machines').controller('MachinesController', ['$scope', '$ro
     $scope.selectR = true;
     $scope.selectF = true;
     $scope.useLog = {};
+    $scope.machineId = {};
 
 /*
 * machines data init
@@ -21,7 +22,7 @@ angular.module('mean.machines').controller('MachinesController', ['$scope', '$ro
 * button enroll
 * */
     $scope.enroll = function (machineId) {
-        $scope.theMachineId = machineId;
+        $scope.machineId = machineId;
         var modalInstance = $modal.open({
             templateUrl: 'views/machines/machinesR.html',
             controller: function ($scope, Machines, $modalInstance, selectF, useLog, machineId) {
@@ -47,12 +48,14 @@ angular.module('mean.machines').controller('MachinesController', ['$scope', '$ro
                 };
             },
             resolve: {
-                selectF:$scope.selectF,
+                selectF:function () {
+                    return $scope.selectF;
+                },
                 useLog:function () {
                     return $scope.useLog;
                 },
                 machineId:function () {
-                    return $scope.theMachineId;
+                    return $scope.machineId;
                 }
             }
         });
