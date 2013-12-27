@@ -1,21 +1,22 @@
-<section data-ng-controller="MachinesController" ng-init="checked=true" data-ng-init="find()">
+<section data-ng-controller="MachinesController" data-ng-init="find()">
     <label>
         <input type="checkbox" ng-model="checked">
     </label>
-    <div class="check-element animate-show-hide view" ng-show="checked" style="clear:both;">
+    <div class="check-element animate-show-hide view" ng-hide="checked" style="clear:both;">
         <h1>一机房</h1>
-        <div class="unit" data-ng-repeat="machines in machines">
-            <img class="holder" ng-src="/img/pcStatus/{{machines.status}}.png">
+        <div class="unit" data-ng-repeat="machine in machines">
+            <p ng-bind="machine.machineId"></p>
+            <img class="holder" ng-src="/img/pcStatus/{{machine.status}}.png">
             <div class="alter">
-                <button class="btn" ng-show="selectR" ng-click="enroll()">上机</button>
+                <button class="btn" ng-show="selectR" ng-click="enroll(machine.machineId)">上机</button>
                 <button class="btn" ng-show="selectF" ng-click="fix()">维修</button>
             </div>
         </div>
     </div>
-    <div class="check-element animate-show-hide view" ng-hide="checked">
+    <div class="check-element animate-show-hide view" ng-show="checked">
         <h1>三机房</h1>
-        <div class="unit" data-ng-repeat="machines in machines">
-            <img class="holder" ng-src="/img/pcStatus/{{machines.status}}.png">
+        <div class="unit" data-ng-repeat="machine in machines">
+            <img class="holder" ng-src="/img/pcStatus/{{machine.status}}.png">
             <div class="alter">
                 <button class="btn" ng-click="enroll()">上机</button>
             </div>

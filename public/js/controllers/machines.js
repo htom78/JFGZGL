@@ -20,22 +20,25 @@ angular.module('mean.machines').controller('MachinesController', ['$scope', '$ro
 /*
 * button enroll
 * */
-    $scope.enroll = function () {
+    $scope.enroll = function (machineId) {
+        $scope.theMachineId = machineId;
         var modalInstance = $modal.open({
             templateUrl: 'views/machines/machinesR.html',
-            controller: function ($scope, Machines, $modalInstance, selectF, useLog) {
+            controller: function ($scope, Machines, $modalInstance, selectF, useLog, machineId) {
                 $scope.selectF = selectF;
+                $scope.foo = machineId;
                 $scope.useLog = new Machines({
                     name: '',
                     sno: null,
                     tel: null,
-                    machineId: null,
+                    machineId: machineId,
                     others: ''
                 });
 
                 $scope.ok = function () {
                     $scope.useLog.$save(function(response) {
                     });
+
                     $modalInstance.close($scope.selectF = false);
                 };
 
@@ -47,6 +50,9 @@ angular.module('mean.machines').controller('MachinesController', ['$scope', '$ro
                 selectF:$scope.selectF,
                 useLog:function () {
                     return $scope.useLog;
+                },
+                machineId:function () {
+                    return $scope.theMachineId;
                 }
             }
         });

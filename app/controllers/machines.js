@@ -34,6 +34,8 @@ exports.useOn = function(req,res) {
             res.jsonp(useOn);
         }
     })
+    var pcStauts = new PcStatus(req.body);
+    pcStauts.save
 }
 
 /*
