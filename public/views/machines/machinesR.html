@@ -1,9 +1,9 @@
 <section>
-    <form name="theEnrollForm" class="form-horizontal" method="post" data-ng-submit="ok()">
+    <form name="theEnrollForm" class="form-horizontal" method="post" data-ng-submit="ok()" >
         <div>
             <legend>上机登记</legend>
         </div>
-        <p>您的机器号为：{{foo}}</p>
+        <p>您的机器号为：{{machineId}}</p>
         <div class="control-group">
 
             <!-- Text input-->
@@ -18,7 +18,8 @@
             <!-- Text input-->
             <label class="control-label">学号</label>
             <div class="controls">
-                <input type="number" data-ng-model="useLog.sno" data-ng-maxlength="8" data-ng-minlength="8" placeholder="请输入您8位数的学号" required>
+                <!--<input type="number" data-ng-model="useLog.sno" data-ng-maxlength="8" data-ng-minlength="8" placeholder="请输入您8位数的学号" required>-->
+                <input type="number" data-ng-model="useLog.sno" placeholder="请输入您8位数的学号" required>
             </div>
         </div>
 

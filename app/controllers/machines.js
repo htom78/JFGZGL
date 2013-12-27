@@ -34,8 +34,8 @@ exports.useOn = function(req,res) {
             res.jsonp(useOn);
         }
     })
-    var pcStauts = new PcStatus(req.body);
-    pcStauts.save
+//    var pcStauts = new PcStatus(req.body);
+//    pcStauts.save
 }
 
 /*
@@ -43,17 +43,17 @@ exports.useOn = function(req,res) {
  */
 
 exports.useOff = function(req,res) {
-    var useOff = new UseLog(req.body);
-    useOff.useOff.save(function (err) {
-        if (err) {
-        } else {
-        }
-    });
-    useOff.others.save(function (err) {
-        if (err) {
-        } else {
-        }
-    })
+//    var useOff = new UseLog(req.body);
+//    useOff.useOff.save(function (err) {
+//        if (err) {
+//        } else {
+//        }
+//    });
+//    useOff.others.save(function (err) {
+//        if (err) {
+//        } else {
+//        }
+//    })
 }
 
 /*

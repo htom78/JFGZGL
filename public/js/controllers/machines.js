@@ -27,14 +27,15 @@ angular.module('mean.machines').controller('MachinesController', ['$scope', '$ro
             templateUrl: 'views/machines/machinesR.html',
             controller: function ($scope, Machines, $modalInstance, selectF, useLog, machineId) {
                 $scope.selectF = selectF;
-                $scope.foo = machineId;
+                $scope.machineId = machineId;
                 $scope.useLog = new Machines({
                     name: '',
                     sno: null,
                     tel: null,
-                    machineId: machineId,
+                    machineId: null,
                     others: ''
                 });
+                $scope.useLog.machineId = machineId;
 
                 $scope.ok = function () {
                     $scope.useLog.$save(function(response) {
