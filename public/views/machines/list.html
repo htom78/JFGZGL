@@ -7,7 +7,7 @@
         <div class="unit" data-ng-repeat="machines in machines">
             <img class="holder" ng-src="/img/pcStatus/{{machines.status}}.png">
             <div class="alter">
-                <button class="btn" ng-show="selectR" ng-click="R()">上机</button>
+                <button class="btn" ng-show="selectR" ng-click="enroll()">上机</button>
                 <button class="btn" ng-show="selectF" ng-click="fix()">维修</button>
             </div>
         </div>
@@ -17,7 +17,7 @@
         <div class="unit" data-ng-repeat="machines in machines">
             <img class="holder" ng-src="/img/pcStatus/{{machines.status}}.png">
             <div class="alter">
-                <button class="btn" ng-click="R()">上机</button>
+                <button class="btn" ng-click="enroll()">上机</button>
             </div>
         </div>
     </div>

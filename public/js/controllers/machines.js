@@ -18,9 +18,9 @@ angular.module('mean.machines').controller('MachinesController', ['$scope', '$ro
     };
 
 /*
-* button R
+* button enroll
 * */
-    $scope.R = function () {
+    $scope.enroll = function () {
         var modalInstance = $modal.open({
             templateUrl: 'views/machines/machinesR.html',
             controller: function ($scope, Machines, $modalInstance, selectF, useLog) {
