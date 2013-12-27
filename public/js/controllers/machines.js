@@ -2,8 +2,12 @@ angular.module('mean.machines').controller('MachinesController', ['$scope', '$ro
         'Global', 'Machines', function ($scope, $routeParams, $location, $modal, Global, Machines) {
     $scope.global = Global;
     $scope.machines = {};
-    $scope.selectR = true;
-    $scope.selectF = true;
+    $scope.select = {
+        selectROn: true,
+        selectFOn: true,
+        selectROff: false,
+        selectFOff: false
+    };
     $scope.useLog = {};
     $scope.machineId = {};
 
@@ -24,9 +28,9 @@ angular.module('mean.machines').controller('MachinesController', ['$scope', '$ro
     $scope.enroll = function (machineId) {
         $scope.machineId = machineId;
         var modalInstance = $modal.open({
-            templateUrl: 'views/machines/machinesR.html',
-            controller: function ($scope, Machines, $modalInstance, selectF, useLog, machineId) {
-                $scope.selectF = selectF;
+            templateUrl: 'views/machines/enroll.html',
+            controller: function ($scope, Machines, $modalInstance, select, useLog, machineId) {
+                $scope.select = select;
                 $scope.machineId = machineId;
                 $scope.useLog = new Machines({
                     name: '',
@@ -38,10 +42,14 @@ angular.module('mean.machines').controller('MachinesController', ['$scope', '$ro
                 $scope.useLog.machineId = machineId;
 
                 $scope.ok = function () {
+
                     $scope.useLog.$save(function(response) {
                     });
 
-                    $modalInstance.close($scope.selectF = false);
+                    $modalInstance.close(
+                        $scope.select.selectROn = false,
+                        $scope.select.selectROff = true
+                    );
                 };
 
                 $scope.cancel = function () {
@@ -49,8 +57,8 @@ angular.module('mean.machines').controller('MachinesController', ['$scope', '$ro
                 };
             },
             resolve: {
-                selectF:function () {
-                    return $scope.selectF;
+                select:function () {
+                    return $scope.select;
                 },
                 useLog:function () {
                     return $scope.useLog;
@@ -61,10 +69,55 @@ angular.module('mean.machines').controller('MachinesController', ['$scope', '$ro
             }
         });
 
-        modalInstance.result.then(function (selected) {
-            $scope.selectF = selected;
+        modalInstance.result.then(function (select) {
+            $scope.select = select;
         });
     };
+
+/*
+ * button away
+ * */
+$scope.away = function (machineId) {
+    $scope.machineId = machineId;
+    var modalInstance = $modal.open({
+        templateUrl: 'views/machines/away.html',
+        controller: function ($scope, Machines, $modalInstance, selectF, useLog, machineId) {
+            $scope.selectF = selectF;
+            $scope.machineId = machineId;
+            $scope.useLog = new Machines({
+                name: '',
+                sno: null,
+                tel: null,
+                machineId: null,
+                others: ''
+            });
+            $scope.useLog.machineId = machineId;
+
+            $scope.submit = function () {
+
+                $scope.useLog.$save(function(response) {
+                });
+
+                $modalInstance.close($scope.selectF = true);
+            };
+        },
+        resolve: {
+            selectF:function () {
+                return $scope.selectF;
+            },
+            useLog:function () {
+                return $scope.useLog;
+            },
+            machineId:function () {
+                return $scope.machineId;
+            }
+        }
+    });
+
+    modalInstance.result.then(function (selected) {
+        $scope.selectF = selected;
+    });
+};
 
 /*
 * button fix

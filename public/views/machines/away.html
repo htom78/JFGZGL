@@ -1,0 +1,22 @@
+<form class="form-horizontal" method="put" data-ng-submit="submit()">
+    <div>
+        <legend class="">下机</legend>
+    </div>
+    <p>您的机器号为：{{machineId}}</p>
+
+    <div class="control-group">
+        <!-- Textarea -->
+        <label class="control-label">下机留言</label>
+        <div class="controls">
+            <div class="textarea">
+                <textarea type="text" style="margin: 0px; height: 136px; width: 239px;" data-ng-model="useLog.note"> </textarea>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-footer">
+        <div class="controls">
+            <button class="btn btn-primary" type="submit">下机</button>
+        </div>
+    </div>
+</form>
