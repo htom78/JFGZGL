@@ -1,4 +1,5 @@
-angular.module('mean.machines').controller('MachinesController', ['$scope', '$routeParams', '$location', '$modal', 'Global', 'Machines', function ($scope, $routeParams, $location, $modal, Global, Machines) {
+angular.module('mean.machines').controller('MachinesController', ['$scope', '$routeParams', '$location', '$modal',
+        'Global', 'Machines', function ($scope, $routeParams, $location, $modal, Global, Machines) {
     $scope.global = Global;
     $scope.machines = {};
     $scope.selectR = true;
@@ -9,9 +10,11 @@ angular.module('mean.machines').controller('MachinesController', ['$scope', '$ro
 * machines data init
 * */
     $scope.find = function() {
+
         Machines.query(function(pcStatuses) {
             $scope.machines = pcStatuses;
         });
+
     };
 
 /*
@@ -47,6 +50,7 @@ angular.module('mean.machines').controller('MachinesController', ['$scope', '$ro
                 }
             }
         });
+
         modalInstance.result.then(function (selected) {
             $scope.selectF = selected;
         });
@@ -70,6 +74,7 @@ angular.module('mean.machines').controller('MachinesController', ['$scope', '$ro
             resolve: {
             }
         });
+
         modalInstance.result.then(function (selectedItem) {
             $scope.selected = selectedItem;
         });
