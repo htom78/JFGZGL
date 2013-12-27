@@ -1,5 +1,5 @@
 <section>
-    <form class="form-horizontal" method="post">
+    <form name="theEnrollForm" class="form-horizontal" method="post">
         <div>
             <legend>上机登记</legend>
         </div>
@@ -17,7 +17,7 @@
             <!-- Text input-->
             <label class="control-label">学号</label>
             <div class="controls">
-                <input type="number" ng-model="useLog.sno" required>
+                <input type="number" ng-model="useLog.sno" ng-maxlength="8" ng-minlength="8" placeholder="请输入您8位数的学号" required>
             </div>
         </div>
 
@@ -32,7 +32,7 @@
 
         <div class="modal-footer">
             <!-- Button -->
-            <button type="submit" class="btn btn-primary" ng-click="ok()" >提交</button>
+            <button type="submit" class="btn btn-primary" ng-click="ok()" ng-disabled='!theEnrollForm.$valid'>提交</button>
             <button class="btn btn-warning" ng-click="cancel()">取消</button>
         </div>
     </form>
