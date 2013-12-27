@@ -74,7 +74,7 @@
                 $httpBackend.flush();
 
                 // test scope value
-                expect(scope.pcStatuses).toEqual([{
+                expect(scope.machines).toEqual([{
                     id : 1,
                     status: 'free'
                 }, {
