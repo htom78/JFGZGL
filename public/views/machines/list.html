@@ -8,10 +8,10 @@
             <p ng-bind="machine.machineId"></p>
             <img class="holder" ng-src="/img/pcStatus/{{machine.status}}.png">
             <div class="alter">
-                <button class="btn" ng-show="select.selectROn" ng-click="enroll(machine.machineId)">上机</button>
-                <button class="btn" ng-show="select.selectROff" ng-click="away(machine.machineId)">下机</button>
-                <button class="btn" ng-show="select.selectFOn" ng-click="fixOn(machine.machineId)">维修</button>
-                <button class="btn" ng-show="select.selectFOff" ng-click="fixOff(machine.machineId)">修完</button>
+                <button class="btn btn-mini" ng-click="enroll(machine.machineId)">上机</button>
+                <button class="btn btn-mini" ng-click="away(machine.machineId)">下机</button>
+                <button class="btn btn-mini" ng-click="fixOn(machine.machineId)">维修</button>
+                <button class="btn btn-mini" ng-click="fixOff(machine.machineId)">修完</button>
             </div>
         </div>
     </div>
@@ -20,7 +20,10 @@
         <div class="unit" data-ng-repeat="machine in machines">
             <img class="holder" ng-src="/img/pcStatus/{{machine.status}}.png">
             <div class="alter">
-                <button class="btn" ng-click="enroll()">上机</button>
+                <button class="btn btn-mini" ng-click="enroll(machine.machineId)">上机</button>
+                <button class="btn btn-mini" ng-click="away(machine.machineId)">下机</button>
+                <button class="btn btn-mini" ng-click="fixOn(machine.machineId)">维修</button>
+                <button class="btn btn-mini" ng-click="fixOff(machine.machineId)">修完</button>
             </div>
         </div>
     </div>

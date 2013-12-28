@@ -1,0 +1,32 @@
+<form name="theFixOnForm" class="form-horizontal" method="put" data-ng-submit="ok()">
+    <div>
+        <legend class="">维修登记</legend>
+    </div>
+    <p>维修的机器号为：{{machineId}}</p>
+
+    <div class="control-group">
+        <!-- Textarea -->
+        <label class="control-label">机器出现的问题</label>
+        <div class="controls">
+            <div class="textarea">
+                <textarea type="text" style="margin: 0px; height: 136px; width: 239px;" data-ng-model="useLog.note"> </textarea>
+            </div>
+        </div>
+    </div>
+
+    <div class="control-group">
+
+        <!-- Text input-->
+        <label class="control-label">维修者姓名</label>
+        <div class="controls">
+            <input type="text" required class="input">
+        </div>
+    </div>
+
+    <div class="modal-footer">
+        <div class="controls">
+            <button class="btn btn-primary" type="submit" data-ng-disabled='!theFixOnForm.$valid'>维修</button>
+            <button class="btn btn-warning" data-ng-click="cancel()">取消</button>
+        </div>
+    </div>
+</form>
