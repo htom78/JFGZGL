@@ -11,6 +11,18 @@ angular.module('mean.machines').controller('MachinesController', ['$scope', '$ro
     $scope.useLog = {};
     $scope.machineId = {};
 
+
+//    /*
+//     * button switch
+//     * */
+//    var ButtonsCtrl = function ($scope) {
+//
+//        $scope.checkModel = {
+//            left: false,
+//            right: false
+//        };
+//    };
+
     /*
     * machines data init
     * */
@@ -50,6 +62,7 @@ angular.module('mean.machines').controller('MachinesController', ['$scope', '$ro
                 $scope.ok = function () {
 
                     $scope.useLog.$save(function(response) {
+                        alter(response);
                     });
 
                     $modalInstance.close(

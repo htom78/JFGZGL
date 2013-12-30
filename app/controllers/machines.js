@@ -30,8 +30,9 @@ exports.useOn = function(req,res) {
     var useOn = new UseLog(req.body);
     useOn.save(function (err) {
         if (err) {
+            res.jsonp('上机出现问题请重新上机！');
         } else {
-            res.jsonp(useOn);
+            res.jsonp('上机成功！');
         }
     })
 //    var pcStauts = new PcStatus(req.body);
