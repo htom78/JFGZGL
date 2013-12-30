@@ -1,10 +1,9 @@
 <section data-ng-controller="MachinesController" data-ng-init="find()">
-    <label class="checkbox">
-        <input type="checkbox" ng-model="checked">
-        机房切换开关
-    </label>
+    <div class="btn-group">
+        <button type="button" class="btn btn-primary" ng-model="checked" btn-radio="false">一机房</button>
+        <button type="button" class="btn btn-primary" ng-model="checked" btn-radio="true">三机房</button>
+    </div>
     <div class="check-element animate-show-hide view" ng-hide="checked" style="clear:both;">
-        <h3>一机房</h3>
         <div class="unit" data-ng-repeat="machine in machines | filter:{belong:1}">
             <p class="machineId"><span ng-bind="machine.machineId"></span>号机</p>
             <img class="holder" ng-src="/img/pcStatus/{{machine.status}}.png">
@@ -17,7 +16,6 @@
         </div>
     </div>
     <div class="check-element animate-show-hide view" ng-show="checked">
-        <h3>三机房</h3>
         <div class="unit" data-ng-repeat="machine in machines | filter:{belong:3}">
             <p class="machineId"><span ng-bind="machine.machineId"></span>号机</p>
             <img class="holder" ng-src="/img/pcStatus/{{machine.status}}.png">

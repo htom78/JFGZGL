@@ -11,17 +11,7 @@ angular.module('mean.machines').controller('MachinesController', ['$scope', '$ro
     $scope.useLog = {};
     $scope.machineId = {};
 
-
-//    /*
-//     * button switch
-//     * */
-//    var ButtonsCtrl = function ($scope) {
-//
-//        $scope.checkModel = {
-//            left: false,
-//            right: false
-//        };
-//    };
+    $scope.checked = false; // button switch default
 
     /*
     * machines data init
