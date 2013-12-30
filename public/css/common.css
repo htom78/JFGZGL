@@ -29,9 +29,12 @@ footer p {
     width: 80px;
     height: 80px;
     overflow: hidden;
+    margin: 20px;
+    float: left;
 }
 .alter{
     margin-top: -80px;
+    padding-top: 20px;
     position: absolute;
     top: 0;
     left: 0;
@@ -53,6 +56,12 @@ footer p {
 }
 
 .view{
-    margin-top: 80px;
+    margin-top: 10px;
+
+}
+
+.machineId {
+    position: absolute;
+    padding: 30px 20px;
 
 }
