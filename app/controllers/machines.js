@@ -27,16 +27,29 @@ exports.all = function(req, res) {
 *create use On
 */
 exports.useOn = function(req,res) {
+    var message = null;
     var useOn = new UseLog(req.body);
     useOn.save(function (err) {
         if (err) {
-            res.jsonp('上机出现问题请重新上机！');
+            message = '上机出现问题请重新上机！';
         } else {
-            res.jsonp('上机成功！');
-        }
+            message = '上机成功！';
+        };
+
+        return res.jsonp(message);
     })
-//    var pcStauts = new PcStatus(req.body);
-//    pcStauts.save
+
+
+    var pcStautsChange = new PcStatus(req.body);
+    pcStautsChange.save(function (err) {
+        if (err) {
+            message = '修改机器状态失败！';
+      } else {
+            message = '修改机器状态成功！';
+        };
+
+        return res.jsonp(message);
+    })
 }
 
 /*

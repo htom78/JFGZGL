@@ -49,10 +49,20 @@ angular.module('mean.machines').controller('MachinesController', ['$scope', '$ro
                 $scope.useLog.machineId = machineId;
 
 
+                $scope.pcStautsChange = new Machines({
+                    machineId: null,
+                    status: null
+                });
+                $scope.pcStautsChange.machineId = machineId;
+                $scope.pcStautsChange.status = 'using';
+
+
                 $scope.ok = function () {
 
                     $scope.useLog.$save(function(response) {
-                        alter(response);
+                    });
+
+                    $scope.pcStautsChange.$save(function(response) {
                     });
 
                     $modalInstance.close(
