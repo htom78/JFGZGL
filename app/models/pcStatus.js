@@ -6,9 +6,23 @@ var mongoose = require('mongoose'),
 
 // Schema
 var PcStatusSchema = new Schema({
-    machineId: Number,
-    status: String,
-    belong: Number
+    machineId: {
+        type: Number,
+        default: null
+    },
+    status: {
+        type: String,
+        default: 'free'
+    },
+    belong: Number,
+    user: {
+        type: String,
+        default: ''
+    },
+    userId: {
+        type: String,
+        default: ''
+    }
 });
 
 mongoose.model('PcStatus', PcStatusSchema);

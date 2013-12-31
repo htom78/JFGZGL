@@ -16,7 +16,7 @@ var useLogSchema = new Schema({
     },
     tel: {
         type:Number,
-        default:''
+        default:null
     },
     machineId: {
         type:Number,
@@ -28,7 +28,7 @@ var useLogSchema = new Schema({
     },
     useOff: {
         type: Date,
-        default: null
+        default: Date.now
     },
     note: {
         type: String,

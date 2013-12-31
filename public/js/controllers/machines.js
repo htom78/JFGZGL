@@ -17,7 +17,6 @@ angular.module('mean.machines').controller('MachinesController', ['$scope', '$ro
     * machines data init
     * */
     $scope.find = function() {
-
         Machines.query(function(pcStatuses) {
             $scope.machines = pcStatuses;
         });
@@ -34,35 +33,27 @@ angular.module('mean.machines').controller('MachinesController', ['$scope', '$ro
         var modalInstance = $modal.open({
             templateUrl: 'views/machines/enroll.html',
             controller: function ($scope, Machines, $modalInstance, useLog, machineId) {
-
 //                $scope.select = select;
 
                 $scope.machineId = machineId;
 
                 $scope.useLog = new Machines({
-                    name: '',
-                    sno: null,
-                    tel: null,
-                    machineId: null,
-                    others: ''
-                });
-                $scope.useLog.machineId = machineId;
-
-
-                $scope.pcStautsChange = new Machines({
+                    name: this.name,
+                    sno: this.sno,
+                    tel: this.tel,
                     machineId: null,
                     status: null
-                });
-                $scope.pcStautsChange.machineId = machineId;
-                $scope.pcStautsChange.status = 'using';
 
+                });
+                $scope.useLog.machineId = machineId;
+                $scope.useLog.status = 'using';
 
                 $scope.ok = function () {
 
-                    $scope.useLog.$save(function(response) {
-                    });
-
-                    $scope.pcStautsChange.$save(function(response) {
+                    $scope.useLog.$save(function() {
+                        Machines.query(function(pcStatuses) {
+                            $scope.machines = pcStatuses;
+                        });
                     });
 
                     $modalInstance.close(
@@ -108,21 +99,20 @@ angular.module('mean.machines').controller('MachinesController', ['$scope', '$ro
                 $scope.machineId = machineId;
 
                 $scope.useLog = new Machines({
-                    name: '',
-                    sno: null,
-                    tel: null,
-                    machineId: null,
-                    others: ''
+                    others: this.note,
+                    machineId: null
                 });
                 $scope.useLog.machineId = machineId;
 
-
                 $scope.ok = function () {
 
-                    $scope.useLog.$save(function(response) {
+                    $scope.useLog.$update(function() {
+                        Machines.query(function(pcStatuses) {
+                            $scope.machines = pcStatuses;
+                        });
                     });
 
-                    $modalInstance.close($scope.selectF = true);
+                    $modalInstance.close();
                 };
 
                 $scope.cancel = function () {
@@ -140,7 +130,7 @@ angular.module('mean.machines').controller('MachinesController', ['$scope', '$ro
             }
         });
 
-        modalInstance.result.then(function (selected) {
+        modalInstance.result.then(function () {
         });
     };
 
