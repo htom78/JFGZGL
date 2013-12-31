@@ -64,7 +64,7 @@ exports.useOn = function(req,res) {
 
 exports.useOff = function(req,res) {
     var message = null;
-    var useId = '';
+    var id = null
     PcStatus.findOneAndUpdate({ machineId: req.body.machineId },{
         status: 'free'
     }, function (err, doc) {
@@ -72,21 +72,26 @@ exports.useOff = function(req,res) {
             message = '没有找到相应机器！';
         } else {
             console.log(doc);
-            useId = doc.userId;
+            id = doc.userId;
             message = '成功找到相应机器！';
-        };
-        UseLog.findOneAndUpdate({_Id: useId}, {
-            note: req.body.note,
-            useOff: new Date().getTime()
-        }, function (err) {
-            if (err) {
-                message = '下机出现问题请重新下机！';
-            } else {
-                message = '下机成功！';
-            };
             console.log(message);
+            console.log(id);
+            UseLog.findByIdAndUpdate(id, {
+                note: req.body.note,
+                useOff: new Date().getTime()
+            }, function (err,doc) {
+                if (err) {
+                    message = '下机出现问题请重新下机！';
+                } else {
+                    console.log(doc);
+                    message = '下机成功！';
+                };
+                console.log(message);
 
-        })
+            });
+        };
+
+
     });
 
 }
