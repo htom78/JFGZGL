@@ -13,7 +13,6 @@ angular.module('mean.machines').controller('MachinesController', ['$scope', '$ro
         Machines.query(function(pcStatuses) {
             $scope.machines = pcStatuses;
         });
-
     };
 
     /*
@@ -25,7 +24,7 @@ angular.module('mean.machines').controller('MachinesController', ['$scope', '$ro
 
         var modalInstance = $modal.open({
             templateUrl: 'views/machines/enroll.html',
-            controller: function ($scope, Machines, $modalInstance, $location, useLog,machineId) {
+            controller: function ($scope, Machines, $modalInstance, $location, useLog, machineId) {
 
                 $scope.machineId = machineId;
 
@@ -65,7 +64,10 @@ angular.module('mean.machines').controller('MachinesController', ['$scope', '$ro
             }
         });
 
-        modalInstance.result.then(function (select) {
+        modalInstance.result.then(function() {
+            Machines.query(function(pcStatuses) {
+                $scope.machines = pcStatuses;
+            });
         });
 
 
@@ -117,7 +119,10 @@ angular.module('mean.machines').controller('MachinesController', ['$scope', '$ro
             }
         });
 
-        modalInstance.result.then(function () {
+        modalInstance.result.then(function() {
+            Machines.query(function(pcStatuses) {
+                $scope.machines = pcStatuses;
+            });
         });
     };
 
