@@ -29,6 +29,9 @@ exports.all = function(req, res) {
 */
 exports.useOn = function(req,res) {
     var message = null;
+    var passMessage = {
+        a:null
+    };
     var machineId = req.body.machineId;
     var useOn = new UseLog(req.body);
     var useId = null ;
@@ -37,6 +40,7 @@ exports.useOn = function(req,res) {
             message = '上机出现问题请重新上机！';
         } else {
             message = '上机成功！';
+            passMessage.a = '上机成功！';
             useId = doc._id;
             console.log(doc._id);
         };
@@ -52,7 +56,7 @@ exports.useOn = function(req,res) {
                 console.log(doc);
             };
             console.log(message);
-            res.jsonp(doc);
+            res.jsonp(passMessage);
         })
     });
 
@@ -64,6 +68,9 @@ exports.useOn = function(req,res) {
 
 exports.useOff = function(req,res) {
     var message = null;
+    var passMessage = {
+        a:null
+    };
     var id = null
     PcStatus.findOneAndUpdate({ machineId: req.body.machineId },{
         status: 'free'
@@ -86,8 +93,9 @@ exports.useOff = function(req,res) {
             } else {
                 console.log(doc);
                 message = '下机成功！';
+                passMessage.a = '下机成功！';
             };
-            res.jsonp(doc);
+            res.jsonp(passMessage);
             console.log(message);
         });
 

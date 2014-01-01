@@ -43,7 +43,7 @@ angular.module('mean.machines').controller('MachinesController', ['$scope', '$ro
                 $scope.ok = function () {
 
                     $scope.useLog.$save(function(res) {
-
+                        alert(res.a);
                     });
 
                     $modalInstance.close(
@@ -95,8 +95,8 @@ angular.module('mean.machines').controller('MachinesController', ['$scope', '$ro
 
                 $scope.ok = function () {
 
-                    $scope.useLog.$update(function() {
-
+                    $scope.useLog.$update(function(res) {
+                        alert(res.a);
                     });
 
                     $modalInstance.close();
