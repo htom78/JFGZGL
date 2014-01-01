@@ -3,6 +3,7 @@ angular.module('mean.machines').controller('MachinesController', ['$scope', '$ro
     $scope.global = Global;
     $scope.machines = {};
     $scope.useLog = {};
+    $scope.fixLog = {};
     $scope.machineId = {};
     $scope.checked = false; // button switch default
 
@@ -24,7 +25,7 @@ angular.module('mean.machines').controller('MachinesController', ['$scope', '$ro
 
         var modalInstance = $modal.open({
             templateUrl: 'views/machines/enroll.html',
-            controller: function ($scope, Machines, $modalInstance, $location, useLog, machineId) {
+            controller: function ($scope, Machines, $modalInstance, useLog, machineId) {
 
                 $scope.machineId = machineId;
 
@@ -129,48 +130,112 @@ angular.module('mean.machines').controller('MachinesController', ['$scope', '$ro
     /*
     * button fixOn
     * */
-    $scope.fixOn = function () {
-        var modalInstance = $modal.open({
-            templateUrl: 'views/machines/fixOn.html',
-            controller: function ($scope, $modalInstance) {
-                $scope.ok = function () {
-                    $modalInstance.close();
-                };
+        $scope.fixOn = function (machineId) {
 
-                $scope.cancel = function () {
-                    $modalInstance.dismiss('cancel');
-                };
-            },
-            resolve: {
-            }
-        });
+            $scope.machineId = machineId;
 
-        modalInstance.result.then(function () {
-        });
-    };
+            var modalInstance = $modal.open({
+                templateUrl: 'views/machines/fixOn.html',
+                controller: function ($scope, Machines, $modalInstance, fixLog, machineId) {
+
+                    $scope.machineId = machineId;
+
+                    $scope.fixLog = new Machines({
+                        startName: this.startName,
+                        problem: this.problem,
+                        machineId: null,
+                        status: null
+
+                    });
+                    $scope.fixLog.machineId = machineId;
+                    $scope.fixLog.status = 'fixing';
+
+                    $scope.ok = function () {
+
+                        $scope.fixLog.$save(function(res) {
+                            alert(res.a);
+                        });
+
+                        $modalInstance.close(
+                        );
+                    };
+
+                    $scope.cancel = function () {
+                        $modalInstance.dismiss('cancel');
+                    };
+
+                },
+                resolve: {
+                    fixLog:function () {
+                        return $scope.fixLog;
+                    },
+                    machineId:function () {
+                        return $scope.machineId;
+                    }
+                }
+            });
+
+            modalInstance.result.then(function() {
+                Machines.query(function(pcStatuses) {
+                    $scope.machines = pcStatuses;
+                });
+            });
+
+
+        };
 
     /*
      * button fixOff
      * */
-    $scope.fixOff = function () {
-        var modalInstance = $modal.open({
-            templateUrl: 'views/machines/fixOff.html',
-            controller: function ($scope, $modalInstance) {
-                $scope.ok = function () {
-                    $modalInstance.close();
-                };
+        $scope.fixOff = function (machineId) {
 
-                $scope.cancel = function () {
-                    $modalInstance.dismiss('cancel');
-                };
-            },
-            resolve: {
-            }
-        });
+            $scope.machineId = machineId;
 
-        modalInstance.result.then(function () {
-        });
-    };
+            var modalInstance = $modal.open({
+                templateUrl: 'views/machines/fixOff.html',
+                controller: function ($scope, Machines, $modalInstance, fixLog, machineId) {
+
+                    $scope.machineId = machineId;
+
+                    $scope.fixLog = new Machines({
+                        result: this.result,
+                        endName: this.endName,
+                        machineId: null,
+                        status: null
+                    });
+                    $scope.fixLog.machineId = machineId;
+                    $scope.fixLog.status = 'free';
+
+                    $scope.ok = function () {
+
+                        $scope.fixLog.$update(function(res) {
+                            alert(res.a);
+                        });
+
+                        $modalInstance.close();
+                    };
+
+                    $scope.cancel = function () {
+                        $modalInstance.dismiss('cancel');
+                    };
+
+                },
+                resolve: {
+                    fixLog:function () {
+                        return $scope.fixLog;
+                    },
+                    machineId:function () {
+                        return $scope.machineId;
+                    }
+                }
+            });
+
+            modalInstance.result.then(function() {
+                Machines.query(function(pcStatuses) {
+                    $scope.machines = pcStatuses;
+                });
+            });
+        };
 
 }]);
 

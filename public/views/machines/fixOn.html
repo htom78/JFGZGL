@@ -1,4 +1,4 @@
-<form name="theFixOnForm" class="form-horizontal" method="put" data-ng-submit="ok()">
+<form name="theFixOnForm" class="form-horizontal" method="post" data-ng-submit="ok()">
     <div>
         <legend class="">维修登记</legend>
     </div>
@@ -9,7 +9,7 @@
         <label class="control-label">机器出现的问题</label>
         <div class="controls">
             <div class="textarea">
-                <textarea type="text" style="margin: 0px; height: 136px; width: 239px;" data-ng-model="useLog.note"> </textarea>
+                <textarea type="text" style="margin: 0px; height: 136px; width: 239px;" data-ng-model="fixLog.problem"> </textarea>
             </div>
         </div>
     </div>
@@ -19,7 +19,7 @@
         <!-- Text input-->
         <label class="control-label">维修者姓名</label>
         <div class="controls">
-            <input type="text" required class="input">
+            <input type="text" data-ng-model="fixLog.startName" required class="input">
         </div>
     </div>
 

@@ -5,24 +5,6 @@ angular.module('mean').config(['$routeProvider',
         when('/machines', {
             templateUrl: 'views/machines/list.html'
         }).
-        when('/machines/machinesR', {
-            templateUrl: 'views/machines/machinesR.html'
-        }).
-        when('/machines/fixR', {
-            templateUrl: 'views/machines/fixR.html'
-        }).
-        when('/machines/afterFixR', {
-            templateUrl: 'views/machines/afterFixR.html'
-        }).
-        when('/machines/machinesS', {
-            templateUrl: 'views/machines/machinesS.html'
-        }).
-        when('/signIn', {
-            templateUrl: 'views/sign/signIn.html'
-        }).
-        when('/signOut', {
-            templateUrl: 'views/sign/signOut.html'
-        }).
         when('/articles', {
             templateUrl: 'views/articles/list.html'
         }).

@@ -15,11 +15,7 @@ var PcStatusSchema = new Schema({
         default: 'free'
     },
     belong: Number,
-    user: {
-        type: String,
-        default: ''
-    },
-    userId: {
+    useId: {
         type: String,
         default: ''
     }

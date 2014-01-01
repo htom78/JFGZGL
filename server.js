@@ -38,7 +38,7 @@ var walk = function(path) {
 };
 walk(models_path);
 
-//Populate empty DB with dummy data
+//Populate empty DB with dummy data only use once
 //require('./app/dummydata/pcStatus');
 
 //bootstrap passport config

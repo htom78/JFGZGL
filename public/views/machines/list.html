@@ -1,11 +1,11 @@
-<section data-ng-controller="MachinesController" data-ng-init="find()">
+<section data-ng-controller="MachinesController" data-ng-init="find()" class="mainWith">
     <div class="btn-group">
         <button type="button" class="btn btn-primary" ng-model="checked" btn-radio="false">一机房</button>
         <button type="button" class="btn btn-primary" ng-model="checked" btn-radio="true">三机房</button>
     </div>
     <div class="check-element animate-show-hide view" ng-hide="checked" style="clear:both;">
         <div class="unit" data-ng-repeat="machine in machines | filter:{belong:1}">
-            <p class="machineId"><span ng-bind="machine.machineId"></span>号机</p>
+            <p class="machineId"><span ng-bind="machine.machineId"></span></p>
             <img class="holder" ng-src="/img/pcStatus/{{machine.status}}.png">
             <div class="alter">
                 <button class="btn btn-mini" ng-click="enroll(machine.machineId)">上机</button>
@@ -17,7 +17,7 @@
     </div>
     <div class="check-element animate-show-hide view" ng-show="checked">
         <div class="unit" data-ng-repeat="machine in machines | filter:{belong:3}">
-            <p class="machineId"><span ng-bind="machine.machineId"></span>号机</p>
+            <p class="machineId"><span ng-bind="machine.machineId"></span></p>
             <img class="holder" ng-src="/img/pcStatus/{{machine.status}}.png">
             <div class="alter">
                 <button class="btn btn-mini" ng-click="enroll(machine.machineId)">上机</button>

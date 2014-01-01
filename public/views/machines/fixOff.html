@@ -9,7 +9,7 @@
         <label class="control-label">机器故障原因</label>
         <div class="controls">
             <div class="textarea">
-                <textarea type="text" style="margin: 0px; height: 136px; width: 239px;" data-ng-model="useLog.note"> </textarea>
+                <textarea type="text" style="margin: 0px; height: 136px; width: 239px;" data-ng-model="fixLog.result"> </textarea>
             </div>
         </div>
     </div>
@@ -19,7 +19,7 @@
         <!-- Text input-->
         <label class="control-label">维修者姓名</label>
         <div class="controls">
-            <input type="text" required class="input">
+            <input type="text" required data-ng-model="fixLog.endName" class="input">
         </div>
     </div>
 
