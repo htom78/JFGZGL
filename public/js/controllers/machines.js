@@ -67,6 +67,8 @@ angular.module('mean.machines').controller('MachinesController', ['$scope', '$ro
 
         modalInstance.result.then(function (select) {
         });
+
+
     };
 
     /*
@@ -83,9 +85,12 @@ angular.module('mean.machines').controller('MachinesController', ['$scope', '$ro
                 $scope.machineId = machineId;
 
                 $scope.useLog = new Machines({
-                    others: this.note,
+                    note: this.note,
                     machineId: null
                 });
+                if(!$scope.useLog.note) {
+                    $scope.useLog.note = '';
+                };
                 $scope.useLog.machineId = machineId;
 
                 $scope.ok = function () {
