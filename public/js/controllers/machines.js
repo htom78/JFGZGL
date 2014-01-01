@@ -93,7 +93,7 @@ angular.module('mean.machines').controller('MachinesController', ['$scope', '$ro
                 });
                 if(!$scope.useLog.note) {
                     $scope.useLog.note = '';
-                };
+                }
                 $scope.useLog.machineId = machineId;
 
                 $scope.ok = function () {
@@ -130,7 +130,7 @@ angular.module('mean.machines').controller('MachinesController', ['$scope', '$ro
     /*
     * button fixOn
     * */
-        $scope.fixOn = function (machineId) {
+    $scope.fixOn = function (machineId) {
 
             $scope.machineId = machineId;
 
@@ -187,7 +187,7 @@ angular.module('mean.machines').controller('MachinesController', ['$scope', '$ro
     /*
      * button fixOff
      * */
-        $scope.fixOff = function (machineId) {
+    $scope.fixOff = function (machineId) {
 
             $scope.machineId = machineId;
 
@@ -236,6 +236,15 @@ angular.module('mean.machines').controller('MachinesController', ['$scope', '$ro
                 });
             });
         };
+
+    /*
+     * fetch situation data
+     * */
+    $scope.gain = function() {
+        Machines.$getS(function(situations) {
+            $scope.situations = situations;
+        });
+    };
 
 }]);
 

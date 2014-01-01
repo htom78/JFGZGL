@@ -65,7 +65,6 @@ exports.useOn = function(req,res) {
 /*
  *create use log Off
  */
-
 exports.useOff = function(req,res) {
     var message = null;
     var passMessage = {
@@ -180,3 +179,19 @@ exports.fixOff = function(req,res) {
 
     });
 };
+
+/*
+* fetching useLog Situation
+* */
+exports.situation = function(req,res) {
+    UseLog.find().sort('useOn').exec(function(err,situations) {
+        if(err) {
+            res.render('error', {
+                status: 500
+            });
+        } else {
+            res.jsonp(situations);
+            console.log(situations);
+        }
+    })
+}

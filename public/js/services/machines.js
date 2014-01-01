@@ -1,17 +1,21 @@
 //machines service used for machines REST endpoint
 angular.module('mean.machines').factory("Machines", ['$resource', function($resource) {
-    return $resource('machines/:fix', {
+    return $resource('machines/:param', {
     }, {
         update: {
             method: 'PUT'
         },
         goPost: {
             method: 'POST',
-            params:{fix:'fix'}
+            params:{param:'fix'}
         },
         goPut: {
             method: 'PUT',
-            params:{fix:'fix'}
+            params:{param:'fix'}
+        },
+        getS: {
+            method: 'GET',
+            params:{param:'situation'}
         }
     });
 }]);

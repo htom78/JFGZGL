@@ -5,6 +5,15 @@ angular.module('mean').config(['$routeProvider',
         when('/machines', {
             templateUrl: 'views/machines/list.html'
         }).
+        when('/machines/situation', {
+            templateUrl: 'views/machines/situation.html'
+        }).
+        when('/signIn', {
+            templateUrl: 'views/sign/signIn.html'
+        }).
+        when('/signOut', {
+            templateUrl: 'views/sign/signOut.html'
+        }).
         when('/articles', {
             templateUrl: 'views/articles/list.html'
         }).
