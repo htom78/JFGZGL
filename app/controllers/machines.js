@@ -6,7 +6,8 @@ var mongoose = require('mongoose'),
     config = require('../../config/config'),
     PcStatus = mongoose.model('PcStatus'),
     UseLog = mongoose.model('UseLog'),
-    Register = mongoose.model('Registers');
+    Register = mongoose.model('Registers'),
+    Q = require('q');
 
 /**
  * List of pcStatus
@@ -51,10 +52,9 @@ exports.useOn = function(req,res) {
                 console.log(doc);
             };
             console.log(message);
+            res.jsonp(doc);
         })
     });
-
-
 
 }
 
@@ -76,21 +76,20 @@ exports.useOff = function(req,res) {
             message = '成功找到相应机器！';
             console.log(message);
             console.log(id);
-            UseLog.findByIdAndUpdate(id, {
-                note: req.body.note,
-                useOff: new Date().getTime()
-            }, function (err,doc) {
-                if (err) {
-                    message = '下机出现问题请重新下机！';
-                } else {
-                    console.log(doc);
-                    message = '下机成功！';
-                };
-                console.log(message);
-
-            });
         };
-
+        UseLog.findByIdAndUpdate(id, {
+            note: req.body.note,
+            useOff: new Date().getTime()
+        }, function (err,doc) {
+            if (err) {
+                message = '下机出现问题请重新下机！';
+            } else {
+                console.log(doc);
+                message = '下机成功！';
+            };
+            res.jsonp(doc);
+            console.log(message);
+        });
 
     });
 

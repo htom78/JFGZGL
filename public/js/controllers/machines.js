@@ -2,15 +2,8 @@ angular.module('mean.machines').controller('MachinesController', ['$scope', '$ro
         'Global', 'Machines', function ($scope, $routeParams, $location, $modal, Global, Machines) {
     $scope.global = Global;
     $scope.machines = {};
-//    $scope.select = {
-//        selectROn: true,
-//        selectFOn: true,
-//        selectROff: false,
-//        selectFOff: false
-//    };
     $scope.useLog = {};
     $scope.machineId = {};
-
     $scope.checked = false; // button switch default
 
     /*
@@ -32,8 +25,7 @@ angular.module('mean.machines').controller('MachinesController', ['$scope', '$ro
 
         var modalInstance = $modal.open({
             templateUrl: 'views/machines/enroll.html',
-            controller: function ($scope, Machines, $modalInstance, useLog, machineId) {
-//                $scope.select = select;
+            controller: function ($scope, Machines, $modalInstance, $location, useLog,machineId) {
 
                 $scope.machineId = machineId;
 
@@ -50,15 +42,11 @@ angular.module('mean.machines').controller('MachinesController', ['$scope', '$ro
 
                 $scope.ok = function () {
 
-                    $scope.useLog.$save(function() {
-                        Machines.query(function(pcStatuses) {
-                            $scope.machines = pcStatuses;
-                        });
+                    $scope.useLog.$save(function(res) {
+
                     });
 
                     $modalInstance.close(
-//                        $scope.select.selectROn = false,
-//                        $scope.select.selectROff = true
                     );
                 };
 
@@ -68,9 +56,6 @@ angular.module('mean.machines').controller('MachinesController', ['$scope', '$ro
 
             },
             resolve: {
-//                select:function () {
-//                    return $scope.select;
-//                },
                 useLog:function () {
                     return $scope.useLog;
                 },
@@ -81,7 +66,6 @@ angular.module('mean.machines').controller('MachinesController', ['$scope', '$ro
         });
 
         modalInstance.result.then(function (select) {
-//            $scope.select = select;
         });
     };
 
@@ -107,9 +91,7 @@ angular.module('mean.machines').controller('MachinesController', ['$scope', '$ro
                 $scope.ok = function () {
 
                     $scope.useLog.$update(function() {
-                        Machines.query(function(pcStatuses) {
-                            $scope.machines = pcStatuses;
-                        });
+
                     });
 
                     $modalInstance.close();
