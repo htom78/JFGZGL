@@ -2,11 +2,11 @@ angular.module('mean.system').controller('HeaderController', ['$scope', 'Global'
     $scope.global = Global;
 
     $scope.machines = [{
-        "title": "上机登记",
+        "title": "登记",
         "link": "machines"
     }, {
-        "title": "上机情况",
-        "link": "machines/machinesS"
+        "title": "情况",
+        "link": "machines/situation"
     }];
 
     $scope.sign = [{

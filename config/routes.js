@@ -34,8 +34,8 @@ module.exports = function(app, passport, auth) {
     app.get('/machines',machines.all);
     app.post('/machines',machines.useOn);
     app.put('/machines',machines.useOff)
-    app.post('/machines/:machineId',machines.fixOn);
-    app.put('/machines/:machineId',machines.fixOff);
+    app.post('/machines/fix',machines.fixOn);
+    app.put('/machines/fix',machines.fixOff);
 
     //Home route
     var index = require('../app/controllers/index');

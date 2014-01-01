@@ -152,7 +152,7 @@ angular.module('mean.machines').controller('MachinesController', ['$scope', '$ro
 
                     $scope.ok = function () {
 
-                        $scope.fixLog.$save(function(res) {
+                        $scope.fixLog.$goPost(function(res) {
                             alert(res.a);
                         });
 
@@ -208,7 +208,7 @@ angular.module('mean.machines').controller('MachinesController', ['$scope', '$ro
 
                     $scope.ok = function () {
 
-                        $scope.fixLog.$update(function(res) {
+                        $scope.fixLog.$goPut(function(res) {
                             alert(res.a);
                         });
 
