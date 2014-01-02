@@ -1,12 +1,12 @@
 <section data-ng-controller="MachinesController" data-ng-init="gain()">
-    <button class="btn" data-ng-click="gain()">sfd</button>
     <table class="table table-hover table-bordered table-condensed" >
-        <caption>上机情况统计</caption>
+        <caption><h2>上机情况统计</h2></caption>
         <thead>
             <tr>
                 <th>姓名</th>
                 <th>学号</th>
                 <th>手机号码</th>
+                <th>机器号</th>
                 <th>上机时间</th>
                 <th>下机时间</th>
                 <th>留言</th>
@@ -14,12 +14,13 @@
         </thead>
         <tbody>
             <tr data-ng-repeat="situation in situations">
-                <td>situation.name</td>
-                <td>situation.sno</td>
-                <td>situation.tel</td>
-                <td>situation.useOn</td>
-                <td>situation.useOff</td>
-                <td>situation.note</td>
+                <td ng-bind="situation.name"></td>
+                <td ng-bind="situation.sno"></td>
+                <td ng-bind="situation.tel"></td>
+                <td ng-bind="situation.machineId"></td>
+                <td ng-bind="situation.useOn"></td>
+                <td ng-bind="situation.useOff"></td>
+                <td ng-bind="situation.note"></td>
             </tr>
         </tbody>
     </table>

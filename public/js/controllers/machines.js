@@ -1,5 +1,5 @@
 angular.module('mean.machines').controller('MachinesController', ['$scope', '$routeParams', '$location', '$modal',
-        'Global', 'Machines', function ($scope, $routeParams, $location, $modal, Global, Machines) {
+        'Global', 'Machines','Situation', function ($scope, $routeParams, $location, $modal, Global, Machines, Situation) {
     $scope.global = Global;
     $scope.machines = {};
     $scope.useLog = {};
@@ -241,7 +241,7 @@ angular.module('mean.machines').controller('MachinesController', ['$scope', '$ro
      * fetch situation data
      * */
     $scope.gain = function() {
-        Machines.$getS(function(situations) {
+        Situation.query(function(situations) {
             $scope.situations = situations;
         });
     };

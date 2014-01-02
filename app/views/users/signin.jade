@@ -3,17 +3,17 @@ extends auth
 block auth
   form.signin.form-horizontal(action="/users/session", method="post")
     .control-group
-      label.control-label(for='email') Email
+      label.control-label(for='email') 邮箱
       .controls
         input#email(type='text', name="email", placeholder='Email')
 
     .control-group
-      label.control-label(for='password') Password
+      label.control-label(for='password') 密码
       .controls
         input#password(type='password', name="password", placeholder='Password')
 
     .form-actions
-      button.btn.btn-primary(type='submit') Sign in
+      button.btn.btn-primary(type='submit') 登陆
       &nbsp;
       | or&nbsp;
-      a.show-signup(href="/signup") Sign up
+      a.show-signup(href="/signup") 注册

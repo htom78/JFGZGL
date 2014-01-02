@@ -184,7 +184,7 @@ exports.fixOff = function(req,res) {
 * fetching useLog Situation
 * */
 exports.situation = function(req,res) {
-    UseLog.find().sort('useOn').exec(function(err,situations) {
+    UseLog.find().sort('-useOn').exec(function(err,situations) {
         if(err) {
             res.render('error', {
                 status: 500

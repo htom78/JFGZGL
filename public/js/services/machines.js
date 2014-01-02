@@ -12,10 +12,6 @@ angular.module('mean.machines').factory("Machines", ['$resource', function($reso
         goPut: {
             method: 'PUT',
             params:{param:'fix'}
-        },
-        getS: {
-            method: 'GET',
-            params:{param:'situation'}
         }
     });
 }]);
