@@ -65,3 +65,22 @@ footer p {
     padding: 30px 20px;
 
 }
+
+.pagination {
+    cursor: pointer;
+}
+
+.pagination ul > li > a:hover,
+.pagination ul > li > a:focus,
+.pagination ul > .active > a,
+.pagination ul > .active > span {
+    background-color:transparent;
+}
+
+.pagination ul > .active > a,
+.pagination ul > .active > span {
+    color: #fff;
+    cursor: default;
+    background-color: #428bca !important;
+    border-color: #428bca;
+}

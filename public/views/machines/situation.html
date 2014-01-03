@@ -1,4 +1,4 @@
-<section data-ng-controller="MachinesController" data-ng-init="gain()">
+<section data-ng-controller="SituationController" data-ng-init="gain()">
     <table class="table table-hover table-bordered table-condensed" >
         <caption><h2>上机情况统计</h2></caption>
         <thead>
@@ -18,10 +18,16 @@
                 <td ng-bind="situation.sno"></td>
                 <td ng-bind="situation.tel"></td>
                 <td ng-bind="situation.machineId"></td>
-                <td ng-bind="situation.useOn"></td>
-                <td ng-bind="situation.useOff"></td>
+                <td ng-bind="situation.useOn | date:'medium'"></td>
+                <td ng-bind="situation.useOff | date:'medium'"></td>
                 <td ng-bind="situation.note"></td>
             </tr>
         </tbody>
     </table>
+
+    <div ng-controller="PaginationController">
+        <pagination total-items="situations.length" page="bigCurrentPage" max-size="maxSize" class="pagination-sm"
+             boundary-links="true" rotate="false" num-pages="numPages"></pagination>
+        <pre>Page: {{bigCurrentPage}} / {{numPages}}</pre>
+    </div>
 </section>

@@ -1,3 +1,7 @@
+/*
+* machine functions
+* */
+
 angular.module('mean.machines').controller('MachinesController', ['$scope', '$routeParams', '$location', '$modal',
         'Global', 'Machines','Situation', function ($scope, $routeParams, $location, $modal, Global, Machines, Situation) {
     $scope.global = Global;
@@ -236,15 +240,6 @@ angular.module('mean.machines').controller('MachinesController', ['$scope', '$ro
                 });
             });
         };
-
-    /*
-     * fetch situation data
-     * */
-    $scope.gain = function() {
-        Situation.query(function(situations) {
-            $scope.situations = situations;
-        });
-    };
 
 }]);
 
