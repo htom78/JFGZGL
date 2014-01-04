@@ -1,25 +1,28 @@
-<section data-ng-controller="SituationController" data-ng-init="gain(Pagination())">
+<section data-ng-controller="SituationController" data-ng-init="gain()">
     <div>
-        快速查找：<input ng-model='searchBar'>
+        快速查找：<input type="text" class="input-large search-query" ng-model='query' ng-change="search()">
     </div>
+    <select ng-options="p.val as p.label for p in sortables" class="input-medium" ng-model="sortPrep" ng-change="search()"></select>
+    <!--<pre>{{items}}</pre>-->
+    <!--<pre>{{situations}}</pre>-->
     <table class="table table-hover table-bordered table-condensed" >
         <caption><h2>上机情况统计</h2></caption>
         <thead>
             <tr>
-                <th >姓名&nbsp;<a ng-click="sort_by('')"><i class="icon-chevron-down"></i></a></th>
-                <th>学号&nbsp;<a ng-click="sort_by('')"><i class="icon-chevron-down"></i></a></th>
-                <th>手机号码&nbsp;<a ng-click="sort_by('')"><i class="icon-chevron-down"></i></a></th>
-                <th>机器号&nbsp;<a ng-click="sort_by('')"><i class="icon-chevron-down"></i></a></th>
-                <th>上机时间&nbsp;<a ng-click="sort_by('')"><i class="icon-chevron-down"></i></a></th>
-                <th>下机时间&nbsp;<a ng-click="sort_by('')"><i class="icon-chevron-down"></i></a></th>
-                <th>上机日期&nbsp;<a ng-click="sort_by('')"><i class="icon-chevron-down"></i></a></th>
-                <th>留言&nbsp;<a ng-click="sort_by('')"><i class="icon-chevron-down"></i></a></th>
+                <th >姓名&nbsp;<i class="icon-chevron-down"></i></th>
+                <th>学号&nbsp;<i class="icon-chevron-down"></i></th>
+                <th>手机号码&nbsp;<i class="icon-chevron-down"></i></th>
+                <th>机器号&nbsp;<i class="icon-chevron-down"></i></th>
+                <th>上机时间&nbsp;<i class="icon-chevron-down"></i></th>
+                <th>下机时间&nbsp;<i class="icon-chevron-down"></i></th>
+                <th>上机日期&nbsp;<i class="icon-chevron-down"></i></th>
+                <th>留言&nbsp;<i class="icon-chevron-down"></i></th>
             </tr>
         </thead>
-        <tbody data-ng-repeat="situation in filteredTodos | filter:searchBar" ng-init="hide = true">
+        <tbody data-ng-repeat="situation in pagedItems[currentPage]" ng-init="hide = true">
             <tr >
                 <td ng-bind="situation.name"></td>
-                <td ng-bind="situation.sno"></td>
+                <td ng-bind="situation.id"></td>
                 <td ng-bind="situation.tel"></td>
                 <td ng-bind="situation.machineId"></td>
                 <td ng-bind="situation.useOn | date:'h:m a'"></td>
@@ -34,9 +37,22 @@
             </tr>
         </tbody>
     </table>
-
-    <pagination total-items="situations.length" page="currentPage" class="pagination-sm"
-         boundary-links="true" rotate="false" num-pages="numPages"></pagination>
-    <pre>Page: {{currentPage}} / {{numPages}}</pre>
+    <div class="center">
+        <div class="pagination">
+            <ul>
+                <li ng-class="{disabled: currentPage == 0}">
+                    <a href ng-click="prevPage()">« Prev</a>
+                </li>
+                <li ng-repeat="n in range(pagedItems.length)"
+                    ng-class="{active: n == currentPage}"
+                    ng-click="setPage()">
+                    <a href ng-bind="n + 1">1</a>
+                </li>
+                <li ng-class="{disabled: currentPage == pagedProjects.length - 1}">
+                    <a href ng-click="nextPage()">Next »</a>
+                </li>
+            </ul>
+        </div>
+    </div>
 
 </section>

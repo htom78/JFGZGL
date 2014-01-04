@@ -2,40 +2,146 @@
 * analyzing the situation
 * */
 
-angular.module('mean.situation').controller('SituationController', ['$scope', '$routeParams', '$location', '$modal',
-    'Global', 'Machines','Situation', function ($scope, $routeParams, $location, $modal, Global, Machines, Situation) {
+angular.module('mean.situation').controller('SituationController', ['$scope','$filter', '$routeParams', '$location', '$modal',
+    'Global', 'Machines','Situation', function ($scope, $filter, $routeParams, $location, $modal, Global, Machines, Situation) {
 
     /*
     * fetch situation data
     * */
-    $scope.gain = function(callback) {
+    $scope.gain = function() {
         Situation.query(function(situations) {
             $scope.situations = situations;
+//            $scope.items = situations;
         });
     };
+
+
+        $scope.items = [
+            {"id":"1","name":"name 1","description":"description 1","field3":"field3 1","field4":"field4 1","field5 ":"field5 1"},
+            {"id":"2","name":"name 2","description":"description 1","field3":"field3 2","field4":"field4 2","field5 ":"field5 2"},
+            {"id":"32","name":"name 3","description":"description 1","field3":"field3 3","field4":"field4 3","field5 ":"field5 3"},
+            {"id":"41","name":"name 4","description":"description 1","field3":"field3 4","field4":"field4 4","field5 ":"field5 4"},
+            {"id":"52","name":"name 5","description":"description 1","field3":"field3 5","field4":"field4 5","field5 ":"field5 5"},
+            {"id":"61","name":"name 6","description":"description 1","field3":"field3 6","field4":"field4 6","field5 ":"field5 6"},
+            {"id":"7","name":"name 7","description":"description 1","field3":"field3 7","field4":"field4 7","field5 ":"field5 7"},
+            {"id":"8","name":"name 8","description":"description 1","field3":"field3 8","field4":"field4 8","field5 ":"field5 8"},
+            {"id":"9","name":"name 9","description":"description 1","field3":"field3 9","field4":"field4 9","field5 ":"field5 9"},
+            {"id":"10","name":"name 10","description":"description 1","field3":"field3 10","field4":"field4 10","field5 ":"field5 10"},
+            {"id":"11","name":"name 11","description":"description 1","field3":"field3 11","field4":"field4 11","field5 ":"field5 11"},
+            {"id":"12","name":"name 12","description":"description 1","field3":"field3 12","field4":"field4 12","field5 ":"field5 12"},
+            {"id":"13","name":"name 13","description":"description 1","field3":"field3 13","field4":"field4 13","field5 ":"field5 13"},
+            {"id":"14","name":"name 14","description":"description 1","field3":"field3 14","field4":"field4 14","field5 ":"field5 14"},
+            {"id":"15","name":"name 15","description":"description 1","field3":"field3 15","field4":"field4 15","field5 ":"field5 15"},
+            {"id":"16","name":"name 16","description":"description 1","field3":"field3 16","field4":"field4 16","field5 ":"field5 16"},
+            {"id":"17","name":"name 17","description":"description 1","field3":"field3 17","field4":"field4 17","field5 ":"field5 17"},
+            {"id":"18","name":"name 18","description":"description 1","field3":"field3 18","field4":"field4 18","field5 ":"field5 18"},
+            {"id":"19","name":"name 19","description":"description 1","field3":"field3 19","field4":"field4 19","field5 ":"field5 19"},
+            {"id":"20","name":"name 20","description":"description 1","field3":"field3 20","field4":"field4 20","field5 ":"field5 20"}
+        ];
+
+        $scope.sortables = [
+            {
+                label: 'Unsorted',
+                val: 'none'
+            },
+            {
+                label: 'Name',
+                val: 'name'
+            },
+            {
+                label: 'id',
+                val: 'id'
+            },
+            {
+                label: 'note',
+                val: 'note'
+            }
+        ];
+        $scope.sortPrep = 'none';
+
+
 
     /*
     * PaginationController
     * */
-    $scope.Pagination = function() {
-
-        $scope.filteredTodos = []
-            ,$scope.currentPage = 1
-            ,$scope.numPerPage = 10
-            ,$scope.maxSize = 5;
 
 
-        $scope.numPages = function () {
-            return Math.ceil($scope.situations.length / $scope.numPerPage);
+        $scope.filteredItems = [];
+        $scope.groupedItems = [];
+        $scope.itemsPerPage = 10;
+        $scope.pagedItems = [];
+        $scope.currentPage = 0;
+
+        var searchMatch = function (haystack, needle) {
+            if (!needle) {
+                return true;
+            }
+            return haystack.toLowerCase().indexOf(needle.toLowerCase()) !== -1;
         };
 
-        $scope.$watch('currentPage + numPerPage', function() {
-            var begin = (($scope.currentPage - 1) * $scope.numPerPage)
-                , end = begin + $scope.numPerPage;
+        // init the filtered items
+        $scope.search = function () {
+            $scope.filteredItems = $filter('filter')($scope.items, function (item) {
+                for(var attr in item) {
+                    if (searchMatch(item[attr], $scope.query) || searchMatch(item.name, $scope.query))
+                        return true;
+                }
+                return false;
+            });
 
-            $scope.filteredTodos = $scope.situations.slice(begin, end);
-        });
-    }
+            if ($scope.sortPrep !== 'none') {
+                $scope.filteredProjects = $filter('orderBy')($scope.filteredItems, $scope.sortPrep);
+            }
+
+            $scope.currentPage = 0;
+            // now group by pages
+            $scope.groupToPages();
+        };
+
+        // calculate page in place
+        $scope.groupToPages = function () {
+            $scope.pagedItems = [];
+
+            for (var i = 0; i < $scope.filteredItems.length; i++) {
+                if (i % $scope.itemsPerPage === 0) {
+                    $scope.pagedItems[Math.floor(i / $scope.itemsPerPage)] = [ $scope.filteredItems[i] ];
+                } else {
+                    $scope.pagedItems[Math.floor(i / $scope.itemsPerPage)].push($scope.filteredItems[i]);
+                }
+            }
+        };
+
+        $scope.range = function (start, end) {
+            var ret = [];
+            if (!end) {
+                end = start;
+                start = 0;
+            }
+            for (var i = start; i < end; i++) {
+                ret.push(i);
+            }
+            return ret;
+        };
+
+        $scope.prevPage = function () {
+            if ($scope.currentPage > 0) {
+                $scope.currentPage--;
+            }
+        };
+
+        $scope.nextPage = function () {
+            if ($scope.currentPage < $scope.pagedItems.length - 1) {
+                $scope.currentPage++;
+            }
+        };
+
+        $scope.setPage = function () {
+            $scope.currentPage = this.n;
+        };
+
+        // functions have been describe process the data for display
+        $scope.search();
+
 
     /*
     * function: if have note show the Button, else hide it!
