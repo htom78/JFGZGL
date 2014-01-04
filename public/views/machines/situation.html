@@ -1,10 +1,9 @@
-<section data-ng-controller="SituationController" data-ng-init="gain()">
+<section data-ng-controller="SituationController">
     <div>
         快速查找：<input type="text" class="input-large search-query" ng-model='query' ng-change="search()">
     </div>
-    <select ng-options="p.val as p.label for p in sortables" class="input-medium" ng-model="sortPrep" ng-change="search()"></select>
-    <!--<pre>{{items}}</pre>-->
-    <!--<pre>{{situations}}</pre>-->
+    <pre>{{items}}</pre>
+
     <table class="table table-hover table-bordered table-condensed" >
         <caption><h2>上机情况统计</h2></caption>
         <thead>
@@ -22,7 +21,7 @@
         <tbody data-ng-repeat="situation in pagedItems[currentPage]" ng-init="hide = true">
             <tr >
                 <td ng-bind="situation.name"></td>
-                <td ng-bind="situation.id"></td>
+                <td ng-bind="situation.sno"></td>
                 <td ng-bind="situation.tel"></td>
                 <td ng-bind="situation.machineId"></td>
                 <td ng-bind="situation.useOn | date:'h:m a'"></td>
