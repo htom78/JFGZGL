@@ -2,20 +2,34 @@
 * analyzing the situation
 * */
 
-angular.module('mean.situation').controller('SituationController', ['$scope','$filter', '$routeParams', '$location', '$modal',
-    'Global', 'Machines','Situation', function ($scope, $filter, $routeParams, $location, $modal, Global, Machines, Situation) {
+angular.module('mean.situation').controller('SituationController', ['$scope','$filter','$q', '$routeParams', '$location', '$modal',
+        'Global', 'Machines','Situation', function ($scope, $filter, $q, $routeParams, $location, $modal, Global, Machines, Situation) {
+
+
+
+    $scope.items = [];
 
     /*
-    * fetch situation data
+    * fetch situation data in async
     * */
-     $scope.items = [];
-     $scope.gain = function() {
-        Situation.query(function(situations) {
-            $scope.items = situations;
-        });
-    };
+    function async() {
+        var deferred = $q.defer();
 
-    $scope.gain();
+        Situation.query(function(situations) {
+            if (situations) {
+                deferred.resolve(situations);
+            } else {
+            }
+        });
+
+        return deferred.promise;
+    }
+
+    var promise = async();
+    promise.then(function(situations) {
+        $scope.items = situations;
+        $scope.search();
+    }, null, null);
 
     /*
     * PaginationController
@@ -23,7 +37,7 @@ angular.module('mean.situation').controller('SituationController', ['$scope','$f
 
         $scope.filteredItems = [];
         $scope.groupedItems = [];
-        $scope.itemsPerPage = 10;
+        $scope.itemsPerPage = 15;
         $scope.pagedItems = [];
         $scope.currentPage = 0;
 
@@ -95,7 +109,7 @@ angular.module('mean.situation').controller('SituationController', ['$scope','$f
         };
 
         // functions have been describe process the data for display
-        $scope.search();
+//        $scope.search();
 
 
     /*
@@ -108,5 +122,6 @@ angular.module('mean.situation').controller('SituationController', ['$scope','$f
             return true;
         }
     }
+
 
 }]);
