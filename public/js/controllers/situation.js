@@ -6,37 +6,46 @@ angular.module('mean.situation').controller('SituationController', ['$scope', '$
     'Global', 'Machines','Situation', function ($scope, $routeParams, $location, $modal, Global, Machines, Situation) {
 
     /*
-     * fetch situation data
-     * */
-    $scope.gain = function() {
+    * fetch situation data
+    * */
+    $scope.gain = function(callback) {
         Situation.query(function(situations) {
             $scope.situations = situations;
-            $scope.totalItems = situations;
         });
     };
 
     /*
-     * PaginationController
-     * */
-            $scope.currentPage = 4;
-            $scope.maxSize = 5;
+    * PaginationController
+    * */
+    $scope.Pagination = function() {
 
-            $scope.setPage = function (pageNo) {
-                $scope.currentPage = pageNo;
-            };
+        $scope.filteredTodos = []
+            ,$scope.currentPage = 1
+            ,$scope.numPerPage = 10
+            ,$scope.maxSize = 5;
 
-            $scope.bigTotalItems = 175;
-            $scope.bigCurrentPage = 1;
 
-        /*
-         * function: if have note show the Button, else hide it!
-         * */
-        $scope.showButton = function(note) {
-            if(note) {
-                return false;
-            }else {
-                return true;
-            }
+        $scope.numPages = function () {
+            return Math.ceil($scope.situations.length / $scope.numPerPage);
+        };
+
+        $scope.$watch('currentPage + numPerPage', function() {
+            var begin = (($scope.currentPage - 1) * $scope.numPerPage)
+                , end = begin + $scope.numPerPage;
+
+            $scope.filteredTodos = $scope.situations.slice(begin, end);
+        });
+    }
+
+    /*
+    * function: if have note show the Button, else hide it!
+    * */
+    $scope.showButton = function(note) {
+        if(note) {
+            return false;
+        }else {
+            return true;
         }
+    }
 
 }]);

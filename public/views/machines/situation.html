@@ -1,4 +1,4 @@
-<section data-ng-controller="SituationController" data-ng-init="gain()">
+<section data-ng-controller="SituationController" data-ng-init="gain(Pagination())">
     <div>
         快速查找：<input ng-model='searchBar'>
     </div>
@@ -16,7 +16,7 @@
                 <th>留言&nbsp;<a ng-click="sort_by('')"><i class="icon-chevron-down"></i></a></th>
             </tr>
         </thead>
-        <tbody data-ng-repeat="situation in situations | filter:searchBar" ng-init="hide = true">
+        <tbody data-ng-repeat="situation in filteredTodos | filter:searchBar" ng-init="hide = true">
             <tr >
                 <td ng-bind="situation.name"></td>
                 <td ng-bind="situation.sno"></td>
@@ -35,8 +35,8 @@
         </tbody>
     </table>
 
-    <pagination total-items="situations.length" page="bigCurrentPage" max-size="maxSize" class="pagination-sm"
+    <pagination total-items="situations.length" page="currentPage" class="pagination-sm"
          boundary-links="true" rotate="false" num-pages="numPages"></pagination>
-    <pre>Page: {{bigCurrentPage}} / {{numPages}}</pre>
+    <pre>Page: {{currentPage}} / {{numPages}}</pre>
 
 </section>
