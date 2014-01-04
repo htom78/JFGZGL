@@ -35,17 +35,8 @@
         </tbody>
     </table>
 
-    <div ng-controller="PaginationController">
-        <pagination total-items="situations.length" page="bigCurrentPage" max-size="maxSize" class="pagination-sm"
-             boundary-links="true" rotate="false" num-pages="numPages"></pagination>
-        <pre>Page: {{bigCurrentPage}} / {{numPages}}</pre>
-    </div>
+    <pagination total-items="situations.length" page="bigCurrentPage" max-size="maxSize" class="pagination-sm"
+         boundary-links="true" rotate="false" num-pages="numPages"></pagination>
+    <pre>Page: {{bigCurrentPage}} / {{numPages}}</pre>
 
-    <div ng-controller="CollapseCtrl">
-        <button class="btn btn-default" ng-click="isCollapsed = !isCollapsed">Toggle collapse</button>
-        <hr>
-        <div collapse="isCollapsed">
-            <div class="well well-lg">Some content</div>
-        </div>
-    </div>
 </section>

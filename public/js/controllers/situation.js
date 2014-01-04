@@ -11,32 +11,22 @@ angular.module('mean.situation').controller('SituationController', ['$scope', '$
     $scope.gain = function() {
         Situation.query(function(situations) {
             $scope.situations = situations;
+            $scope.totalItems = situations;
         });
     };
 
     /*
      * PaginationController
      * */
-//    var PaginationController = function ($scope) {
-//
-//        $scope.prevPage = function () {
-//            if ($scope.currentPage > 0) {
-//                $scope.currentPage--;
-//            }
-//        };
-//
-//        $scope.nextPage = function () {
-//            if ($scope.currentPage < $scope.pagedItems.length - 1) {
-//                $scope.currentPage++;
-//            }
-//        };
-//
-//        $scope.setPage = function () {
-//            $scope.currentPage = this.n;
-//        };
-//
-//        $scope.bigCurrentPage = 1;
-//    };
+            $scope.currentPage = 4;
+            $scope.maxSize = 5;
+
+            $scope.setPage = function (pageNo) {
+                $scope.currentPage = pageNo;
+            };
+
+            $scope.bigTotalItems = 175;
+            $scope.bigCurrentPage = 1;
 
         /*
          * function: if have note show the Button, else hide it!
