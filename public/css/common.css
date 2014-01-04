@@ -66,9 +66,7 @@ footer p {
 
 }
 
-.pagination {
-    cursor: pointer;
-}
+.nav, .pagination, .carousel a { cursor: pointer; }
 
 .pagination ul > li > a:hover,
 .pagination ul > li > a:focus,

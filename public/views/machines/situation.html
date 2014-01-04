@@ -1,26 +1,36 @@
 <section data-ng-controller="SituationController" data-ng-init="gain()">
+    <div>
+        快速查找：<input ng-model='searchBar'>
+    </div>
     <table class="table table-hover table-bordered table-condensed" >
         <caption><h2>上机情况统计</h2></caption>
         <thead>
             <tr>
-                <th>姓名</th>
-                <th>学号</th>
-                <th>手机号码</th>
-                <th>机器号</th>
-                <th>上机时间</th>
-                <th>下机时间</th>
-                <th>留言</th>
+                <th >姓名&nbsp;<a ng-click="sort_by('')"><i class="icon-chevron-down"></i></a></th>
+                <th>学号&nbsp;<a ng-click="sort_by('')"><i class="icon-chevron-down"></i></a></th>
+                <th>手机号码&nbsp;<a ng-click="sort_by('')"><i class="icon-chevron-down"></i></a></th>
+                <th>机器号&nbsp;<a ng-click="sort_by('')"><i class="icon-chevron-down"></i></a></th>
+                <th>上机时间&nbsp;<a ng-click="sort_by('')"><i class="icon-chevron-down"></i></a></th>
+                <th>下机时间&nbsp;<a ng-click="sort_by('')"><i class="icon-chevron-down"></i></a></th>
+                <th>上机日期&nbsp;<a ng-click="sort_by('')"><i class="icon-chevron-down"></i></a></th>
+                <th>留言&nbsp;<a ng-click="sort_by('')"><i class="icon-chevron-down"></i></a></th>
             </tr>
         </thead>
-        <tbody>
-            <tr data-ng-repeat="situation in situations">
+        <tbody data-ng-repeat="situation in situations | filter:searchBar" ng-init="hide = true">
+            <tr >
                 <td ng-bind="situation.name"></td>
                 <td ng-bind="situation.sno"></td>
                 <td ng-bind="situation.tel"></td>
                 <td ng-bind="situation.machineId"></td>
-                <td ng-bind="situation.useOn | date:'medium'"></td>
-                <td ng-bind="situation.useOff | date:'medium'"></td>
-                <td ng-bind="situation.note"></td>
+                <td ng-bind="situation.useOn | date:'h:m a'"></td>
+                <td ng-bind="situation.useOff | date:'h:m a'"></td>
+                <td ng-bind="situation.useOn | date:'yyyy-MM-dd' "></td>
+                <td ng-init="show = showButton(situation.note)">
+                    <button ng-hide="show" class="btn btn-default" ng-click="hide = !hide">显/隐</button>
+                </td>
+            </tr>
+            <tr ng-hide="hide">
+                <td colspan="8"><pre class="well well-lg" ng-bind="situation.note"></pre></td>
             </tr>
         </tbody>
     </table>
@@ -29,5 +39,13 @@
         <pagination total-items="situations.length" page="bigCurrentPage" max-size="maxSize" class="pagination-sm"
              boundary-links="true" rotate="false" num-pages="numPages"></pagination>
         <pre>Page: {{bigCurrentPage}} / {{numPages}}</pre>
+    </div>
+
+    <div ng-controller="CollapseCtrl">
+        <button class="btn btn-default" ng-click="isCollapsed = !isCollapsed">Toggle collapse</button>
+        <hr>
+        <div collapse="isCollapsed">
+            <div class="well well-lg">Some content</div>
+        </div>
     </div>
 </section>

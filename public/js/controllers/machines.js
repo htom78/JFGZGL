@@ -38,7 +38,8 @@ angular.module('mean.machines').controller('MachinesController', ['$scope', '$ro
                     sno: this.sno,
                     tel: this.tel,
                     machineId: null,
-                    status: null
+                    status: null,
+                    useOff:null
 
                 });
                 $scope.useLog.machineId = machineId;

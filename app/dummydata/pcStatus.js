@@ -70,64 +70,64 @@ PcStatus.find({}).remove(function() {
             belong: 1
         },{
             machineId : 21,
-            belong: 3
+            belong: 1
         }, {
             machineId : 22,
-            belong: 3
+            belong: 1
         }, {
             machineId : 23,
-            belong: 3
+            belong: 1
         },{
             machineId : 24,
-            belong: 3
+            belong: 1
         },{
             machineId : 25,
-            belong: 3
+            belong: 1
         }, {
             machineId : 26,
-            belong: 3
+            belong: 1
         }, {
             machineId : 27,
-            belong: 3
+            belong: 1
         },{
             machineId : 28,
-            belong: 3
+            belong: 1
         }, {
             machineId : 29,
-            belong: 3
+            belong: 1
         }, {
             machineId : 30,
-            belong: 3
+            belong: 1
         },{
             machineId : 31,
-            belong: 3
+            belong: 1
         },{
             machineId : 32,
-            belong: 3
+            belong: 1
         }, {
             machineId : 33,
-            belong: 3
+            belong: 1
         }, {
             machineId : 34,
-            belong: 3
+            belong: 1
         },{
             machineId : 35,
-            belong: 3
+            belong: 1
         }, {
             machineId : 36,
-            belong: 3
+            belong: 1
         }, {
             machineId : 37,
-            belong: 3
+            belong: 1
         },{
             machineId : 38,
-            belong: 3
+            belong: 1
         },{
             machineId : 39,
-            belong: 3
+            belong: 1
         }, {
             machineId : 40,
-            belong: 3
+            belong: 1
         },{
             machineId : 41,
             belong: 3
